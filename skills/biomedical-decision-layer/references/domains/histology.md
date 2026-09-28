@@ -453,3 +453,130 @@ Assembled provenance wrapper (a field-mapping exercise, not a complete backend r
 Original cells: `Questions` row 57, `Context_design` same row, `Routing` same row. Background links from the workbook (not evidence of model performance):
 
 - [Background source 1](https://qupath.readthedocs.io/en/stable/docs/intro/about.html)
+
+## Catalogue 1.1.0 extensions
+
+The following additions are proposed tasks with provisional answer definitions. Original entries above are unchanged.
+
+[HI05](#hi05) | [HI06](#hi06)
+
+<a id="hi05"></a>
+
+## HI05
+
+**Question:** Do the reported H&E findings support inflammation in region [R] under the study’s histological criteria?
+
+**Decision unit:** One H&E region × study inflammation criteria
+
+| Option ID | Label | Proposed operational definition |
+|---|---|---|
+| 1 | Supported | Usable reported findings satisfy the study’s inflammation criteria for this region. |
+| 2 | Not supported | Adequate findings fail those criteria; this does not establish absence outside the sampled region. |
+| 3 | Conflicting evidence | Usable comparable assessments of the same region give incompatible evidence under the same criteria. |
+| 4 | Insufficient evidence | Decisive information is missing, inaccessible or too incomplete to assign another category. This is not a negative finding. |
+
+**Accepted inputs:** Region identity, pathologist or validated image-analysis descriptors, infiltrate distribution, tissue compartment, quality and inflammation criteria.
+
+**Minimum context:** Region identity, pathologist or validated image-analysis descriptors, infiltrate distribution, tissue compartment, quality and inflammation criteria.
+
+| Required field | Supplier |
+|---|---|
+| `region_id` | Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping |
+| `tissue_compartment` | Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping |
+| `histology_descriptors` | Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping |
+| `inflammation_criteria` | Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping |
+| `processing_and_image_QC` | Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping |
+| `source_ids` | Local provenance index |
+
+**Upstream preparation:** Prepare identifiers, timing, QC and relevant quantitative or specialist findings. Use a validated histological score or structured pathology criteria directly when they fully settle the classification.
+
+**Optional cached extraction:** Extract reusable source-linked facts and qualifying passages; do not supply a verdict for the same question.
+
+**Reuse key:** One H&E region × study inflammation criteria × source version × protocol version
+
+**Remaining semantic work:** Resolve contextual applicability or narrative relations not already settled by trusted structured fields.
+
+**Bypass Jev/Laya:** Use a validated histological score or structured pathology criteria directly when they fully settle the classification.
+
+**Abstain or escalate:** Hold for missing decisive context, out-of-domain input or low reliability; a substantive Insufficient evidence label is distinct from system abstention.
+
+**Combine outside the model:** Combine separately evaluated criteria with a prespecified application rule; preserve conflicts and missingness. Do not multiply unrelated answer probabilities.
+
+**Future routing:** Supported/applicable findings → retain for the next research step; contrary/nonqualifying findings → record the reason, without automatic irreversible exclusion; mixed/conflicting/insufficient/invalid → retrieve evidence or expert review.
+
+**Interpretation limit:** The model evaluates supplied descriptors, not raw H&E pixels. Inflammation does not identify its cause or a specific pathogen.
+
+**Proposed validation:** Blinded pathology labels with patient/site holdouts and artifact-rich controls; evaluate descriptor extraction separately.
+
+<a id="hi05-synthetic-example"></a>
+
+### HI05 synthetic example
+
+SYNTHETIC: Region R is described as containing a focal inflammatory infiltrate. The tissue compartment and study scoring criteria are not supplied.
+
+This is an unmapped, incomplete source vignette. The JSON context retains required-field gaps. No answer or model output is provided.
+
+**Provenance:** Author-requested extension, REV-009, catalogue 1.1.0; definitions require domain review. Not transcribed from the archival workbook.
+
+<a id="hi06"></a>
+
+## HI06
+
+**Question:** Does the tissue-assay evidence support detection of pathogen [X] in region or specimen [R]?
+
+**Decision unit:** One tissue pathogen assay × specimen or region
+
+| Option ID | Label | Proposed operational definition |
+|---|---|---|
+| 1 | Detection supported | Valid, applicable assay evidence supports detection in the specified specimen or region, without a comparable conflicting result. |
+| 2 | Not detected by the specified assay | Valid applicable assay evidence reports a nondetect within its stated scope and limits, without a comparable conflicting result. |
+| 3 | Conflicting assay evidence | Technically usable, comparable assays give incompatible detection evidence for the same specimen or region. |
+| 4 | Assay uninterpretable or invalid | Documented technical failure prevents interpreting the decisive assay; assess this before biological categories. |
+| 5 | Insufficient evidence | Decisive information is missing, inaccessible or too incomplete to assign another category. This is not a negative finding. |
+
+**Accepted inputs:** Specimen provenance, assay identity and target, controls, technical quality, localization and assay results. Known QC failure takes precedence over interpreting positive or negative findings.
+
+**Minimum context:** Specimen provenance, assay identity and target, controls, technical quality, localization and assay results. Known QC failure takes precedence over interpreting positive or negative findings.
+
+| Required field | Supplier |
+|---|---|
+| `pathogen` | Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping |
+| `specimen_and_region` | Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping |
+| `assay_and_target` | Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping |
+| `assay_results` | Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping |
+| `controls_and_QC` | Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping |
+| `localization` | Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping |
+| `source_ids` | Local provenance index |
+
+**Upstream preparation:** Prepare identifiers, timing, QC and relevant quantitative or specialist findings. Use validated assay calls and QC rules directly when specimen identity, localization and interpretation are unambiguous.
+
+**Optional cached extraction:** Extract reusable source-linked facts and qualifying passages; do not supply a verdict for the same question.
+
+**Reuse key:** One tissue pathogen assay × specimen or region × source version × protocol version
+
+**Remaining semantic work:** Resolve contextual applicability or narrative relations not already settled by trusted structured fields.
+
+**Bypass Jev/Laya:** Use validated assay calls and QC rules directly when specimen identity, localization and interpretation are unambiguous.
+
+**Abstain or escalate:** Hold for missing decisive context, out-of-domain input or low reliability; a substantive Insufficient evidence label is distinct from system abstention.
+
+**Combine outside the model:** Combine separately evaluated criteria with a prespecified application rule; preserve conflicts and missingness. Do not multiply unrelated answer probabilities.
+
+**Future routing:** Supported/applicable findings → retain for the next research step; contrary/nonqualifying findings → record the reason, without automatic irreversible exclusion; mixed/conflicting/insufficient/invalid → retrieve evidence or expert review.
+
+**Interpretation limit:** A nondetect does not establish absence. Detection does not establish viability, causation or infection; radiology alone does not identify the agent.
+
+**Proposed validation:** Expert adjudication with assay controls and orthogonal tests where appropriate; separate technical failures, contamination and biological disagreement.
+
+<a id="hi06-synthetic-example"></a>
+
+### HI06 synthetic example
+
+SYNTHETIC: A tissue pathogen assay reports a signal, but its negative control also fails the assay acceptance criteria.
+
+This is an unmapped, incomplete source vignette. The JSON context retains required-field gaps. No answer or model output is provided.
+
+**Provenance:** Author-requested extension, REV-009, catalogue 1.1.0; definitions require domain review. Not transcribed from the archival workbook.
+
+Background references, inspected 2026-09-28; not validation of this task:
+- [WHO chest imaging recommendations](https://www.ncbi.nlm.nih.gov/books/NBK586653/)

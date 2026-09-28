@@ -1,11 +1,11 @@
 {
-  "catalogue_version": "1.0.0",
+  "catalogue_version": "1.1.0",
   "source_workbook": "Jev_Laya_Omics_Context_Catalogue.xlsx",
   "source_sha256": "5e0f11c2363ebb296c8d397eff1d9c3c8e0ed234e8d06705a5a0ed2c1665bcbf",
   "source_sheet_header_row": 5,
   "scientific_status": "proposed tasks; synthetic examples; no model runs",
   "option_id_policy": "Original numbered options encoded as strings, scoped by question_id; U in routing prose is an alias for the option labeled Insufficient evidence.",
-  "editorial_status": "Definitions and field contracts are additions requiring expert review; source_rows preserve original cells.",
+  "editorial_status": "52 unchanged archival entries plus 13 author-requested extensions. All operational definitions remain editorial proposals requiring expert review.",
   "questions": {
     "BM01": {
       "question_id": "BM01",
@@ -10095,6 +10095,2135 @@
           }
         }
       }
+    },
+    "EC06": {
+      "question_id": "EC06",
+      "question_version": "1.0.0",
+      "domain": "Epidemiology",
+      "domain_page": "references/domains/epidemiology.md#ec06",
+      "decision_unit": "One clinical record × surveillance definition × time window",
+      "question": "Does this record meet the surveillance case definition for [condition] during [time window]?",
+      "options": [
+        {
+          "option_id": "1",
+          "label": "Meets confirmed-case criteria",
+          "definition": "Meets the protocol’s confirmed-case criteria; this category takes precedence over probable and suspected categories.",
+          "definition_status": "editorial proposal; expert review pending"
+        },
+        {
+          "option_id": "2",
+          "label": "Meets probable-case criteria only",
+          "definition": "Meets probable-case criteria but not confirmed-case criteria under the supplied hierarchy.",
+          "definition_status": "editorial proposal; expert review pending"
+        },
+        {
+          "option_id": "3",
+          "label": "Meets suspected-case criteria only",
+          "definition": "Meets suspected-case criteria but not probable or confirmed criteria.",
+          "definition_status": "editorial proposal; expert review pending"
+        },
+        {
+          "option_id": "4",
+          "label": "Does not meet the case definition",
+          "definition": "Adequate records establish that the episode fails the operational case definition.",
+          "definition_status": "editorial proposal; expert review pending"
+        },
+        {
+          "option_id": "5",
+          "label": "Insufficient evidence",
+          "definition": "Decisive information is missing, inaccessible or too incomplete to assign another category. This is not a negative finding.",
+          "definition_status": "editorial proposal; expert review pending"
+        }
+      ],
+      "scientific_status": "proposed task; no model execution or biomedical validation",
+      "accepted_inputs": "Exact surveillance definition, original passages, symptom onset, diagnostic evidence, negation and subject of the statements. Apply the definition’s hierarchy; if the study does not use these three case categories, replace them.",
+      "minimum_context": "Exact surveillance definition, original passages, symptom onset, diagnostic evidence, negation and subject of the statements. Apply the definition’s hierarchy; if the study does not use these three case categories, replace them.",
+      "required_fields": [
+        {
+          "name": "case_definition",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "original_passages",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "episode_dates",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "diagnostic_evidence",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "negation_and_subject",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "source_ids",
+          "supplier": "Local provenance index",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        }
+      ],
+      "optional_fields": [
+        "retrieval_coverage",
+        "source_version",
+        "computed_result_provenance",
+        "selected_set_version"
+      ],
+      "context_provider": "Researcher and specialist tools; optional source-linked factual extraction",
+      "upstream_results": "Prepare identifiers, timing, QC and relevant quantitative or specialist findings. Use validated extraction and deterministic rules when all case criteria are explicit and reliably represented.",
+      "optional_llm_extraction": "Extract reusable source-linked facts and qualifying passages; do not supply a verdict for the same question.",
+      "reuse_unit": "One clinical record × surveillance definition × time window × source version × protocol version",
+      "remaining_semantic_work": "Resolve contextual applicability or narrative relations not already settled by trusted structured fields.",
+      "bypass_when": "Use validated extraction and deterministic rules when all case criteria are explicit and reliably represented.",
+      "abstention_option_id": "5",
+      "abstain_when": "Hold for missing decisive context, out-of-domain input or low reliability; a substantive Insufficient evidence label is distinct from system abstention.",
+      "independent_unit": "One clinical record × surveillance definition × time window",
+      "combine_outside_model": "Combine separately evaluated criteria with a prespecified application rule; preserve conflicts and missingness. Do not multiply unrelated answer probabilities.",
+      "routing": "Supported/applicable findings → retain for the next research step; contrary/nonqualifying findings → record the reason, without automatic irreversible exclusion; mixed/conflicting/insufficient/invalid → retrieve evidence or expert review.",
+      "expert_task": "Review original sources, task definitions and unresolved context with the appropriate domain specialist.",
+      "must_not_imply": "A disease mention is not a case. Category names and hierarchy must match the surveillance protocol.",
+      "validation_proposal": "Adjudicated record labels; split by patient, institution and time; measure category recall and case-count bias.",
+      "examples": {
+        "input": {
+          "synthetic": true,
+          "raw_material_description": "One clinical record × surveillance definition × time window",
+          "available_excerpt": "SYNTHETIC: Record R describes fever and cough beginning on day 3. The supplied summary contains no laboratory result and no surveillance case definition."
+        },
+        "assembled_context": {
+          "synthetic": true,
+          "question_id": "EC06",
+          "question_version": "1.0.0",
+          "candidate_id": "synthetic-ec06",
+          "context_version": "1.0.0",
+          "study_context": {},
+          "computed_results": [],
+          "evidence_items": [
+            {
+              "evidence_id": "EC06-E1",
+              "source_id": "EC06-SYNTHETIC",
+              "source_location": "references/domains/epidemiology.md#ec06-synthetic-example",
+              "extraction_method": "authored synthetic vignette",
+              "excerpt": "SYNTHETIC: Record R describes fever and cough beginning on day 3. The supplied summary contains no laboratory result and no surveillance case definition."
+            }
+          ],
+          "context_fields": {
+            "case_definition": null,
+            "original_passages": null,
+            "episode_dates": null,
+            "diagnostic_evidence": null,
+            "negation_and_subject": null,
+            "source_ids": [
+              "EC06-SYNTHETIC"
+            ]
+          },
+          "missing_fields": [
+            "case_definition",
+            "original_passages",
+            "episode_dates",
+            "diagnostic_evidence",
+            "negation_and_subject"
+          ],
+          "preparation_status": "synthetic_unmapped_example",
+          "token_audit": {
+            "status": "unverified",
+            "tokenizer_revision": null,
+            "packed_token_count": null,
+            "truncation": null
+          },
+          "mapping_note": "Illustrative source passage only; required facts have not been mapped. Do not run this incomplete example or infer a reference label."
+        }
+      },
+      "source_rows": {},
+      "content_origin": {
+        "kind": "author-requested catalogue extension",
+        "proposal_id": "P01",
+        "revision_id": "REV-009",
+        "date": "2026-09-28",
+        "review_status": "editorial proposal; expert review pending"
+      },
+      "related_question_ids": [],
+      "background_sources": [
+        {
+          "title": "WHO event-based surveillance",
+          "url": "https://www.who.int/publications/i/item/WHO-HSE-GCR-LYO-2014.4",
+          "accessed": "2026-09-28",
+          "revision": "live page; no immutable revision recorded",
+          "scope": "Background method or evidence concept; does not validate the proposed task."
+        }
+      ]
+    },
+    "EC07": {
+      "question_id": "EC07",
+      "question_version": "1.0.0",
+      "domain": "Epidemiology",
+      "domain_page": "references/domains/epidemiology.md#ec07",
+      "decision_unit": "One location × time window × outbreak-signal definition",
+      "question": "Do these reports support a suspected outbreak in [location] during [time window] under the surveillance protocol?",
+      "options": [
+        {
+          "option_id": "1",
+          "label": "Supported",
+          "definition": "The evidence satisfies the protocol’s criteria for a suspected outbreak signal.",
+          "definition_status": "editorial proposal; expert review pending"
+        },
+        {
+          "option_id": "2",
+          "label": "Not supported",
+          "definition": "Adequate evidence does not satisfy the stated signal criteria; this does not exclude an outbreak.",
+          "definition_status": "editorial proposal; expert review pending"
+        },
+        {
+          "option_id": "3",
+          "label": "Conflicting evidence",
+          "definition": "Comparable, usable evidence supports incompatible assessments under the same criteria.",
+          "definition_status": "editorial proposal; expert review pending"
+        },
+        {
+          "option_id": "4",
+          "label": "Insufficient evidence",
+          "definition": "Decisive information is missing, inaccessible or too incomplete to assign another category. This is not a negative finding.",
+          "definition_status": "editorial proposal; expert review pending"
+        }
+      ],
+      "scientific_status": "proposed task; no model execution or biomedical validation",
+      "accepted_inputs": "Deduplicated reports, dated case summaries, baseline incidence, operational alert criteria, ascertainment changes and any computed excess or cluster statistics.",
+      "minimum_context": "Deduplicated reports, dated case summaries, baseline incidence, operational alert criteria, ascertainment changes and any computed excess or cluster statistics.",
+      "required_fields": [
+        {
+          "name": "location",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "time_window",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "deduplicated_reports",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "baseline_summary",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "alert_criteria",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "ascertainment_changes",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "source_ids",
+          "supplier": "Local provenance index",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        }
+      ],
+      "optional_fields": [
+        "retrieval_coverage",
+        "source_version",
+        "computed_result_provenance",
+        "selected_set_version"
+      ],
+      "context_provider": "Researcher and specialist tools; optional source-linked factual extraction",
+      "upstream_results": "Prepare identifiers, timing, QC and relevant quantitative or specialist findings. Apply alert thresholds directly when structured surveillance measures fully determine the signal.",
+      "optional_llm_extraction": "Extract reusable source-linked facts and qualifying passages; do not supply a verdict for the same question.",
+      "reuse_unit": "One location × time window × outbreak-signal definition × source version × protocol version",
+      "remaining_semantic_work": "Resolve contextual applicability or narrative relations not already settled by trusted structured fields.",
+      "bypass_when": "Apply alert thresholds directly when structured surveillance measures fully determine the signal.",
+      "abstention_option_id": "4",
+      "abstain_when": "Hold for missing decisive context, out-of-domain input or low reliability; a substantive Insufficient evidence label is distinct from system abstention.",
+      "independent_unit": "One location × time window × outbreak-signal definition",
+      "combine_outside_model": "Combine separately evaluated criteria with a prespecified application rule; preserve conflicts and missingness. Do not multiply unrelated answer probabilities.",
+      "routing": "Supported/applicable findings → retain for the next research step; contrary/nonqualifying findings → record the reason, without automatic irreversible exclusion; mixed/conflicting/insufficient/invalid → retrieve evidence or expert review.",
+      "expert_task": "Review original sources, task definitions and unresolved context with the appropriate domain specialist.",
+      "must_not_imply": "A supported signal is not a confirmed outbreak or a calibrated forecast probability.",
+      "validation_proposal": "Expert-adjudicated signals with geographic and temporal holdouts; measure detection delay, false alerts and missed events.",
+      "examples": {
+        "input": {
+          "synthetic": true,
+          "raw_material_description": "One location × time window × outbreak-signal definition",
+          "available_excerpt": "SYNTHETIC: Three deduplicated reports describe a gastrointestinal syndrome in location L during week W. Baseline incidence and the alert protocol are not supplied."
+        },
+        "assembled_context": {
+          "synthetic": true,
+          "question_id": "EC07",
+          "question_version": "1.0.0",
+          "candidate_id": "synthetic-ec07",
+          "context_version": "1.0.0",
+          "study_context": {},
+          "computed_results": [],
+          "evidence_items": [
+            {
+              "evidence_id": "EC07-E1",
+              "source_id": "EC07-SYNTHETIC",
+              "source_location": "references/domains/epidemiology.md#ec07-synthetic-example",
+              "extraction_method": "authored synthetic vignette",
+              "excerpt": "SYNTHETIC: Three deduplicated reports describe a gastrointestinal syndrome in location L during week W. Baseline incidence and the alert protocol are not supplied."
+            }
+          ],
+          "context_fields": {
+            "location": null,
+            "time_window": null,
+            "deduplicated_reports": null,
+            "baseline_summary": null,
+            "alert_criteria": null,
+            "ascertainment_changes": null,
+            "source_ids": [
+              "EC07-SYNTHETIC"
+            ]
+          },
+          "missing_fields": [
+            "location",
+            "time_window",
+            "deduplicated_reports",
+            "baseline_summary",
+            "alert_criteria",
+            "ascertainment_changes"
+          ],
+          "preparation_status": "synthetic_unmapped_example",
+          "token_audit": {
+            "status": "unverified",
+            "tokenizer_revision": null,
+            "packed_token_count": null,
+            "truncation": null
+          },
+          "mapping_note": "Illustrative source passage only; required facts have not been mapped. Do not run this incomplete example or infer a reference label."
+        }
+      },
+      "source_rows": {},
+      "content_origin": {
+        "kind": "author-requested catalogue extension",
+        "proposal_id": "P02",
+        "revision_id": "REV-009",
+        "date": "2026-09-28",
+        "review_status": "editorial proposal; expert review pending"
+      },
+      "related_question_ids": [],
+      "background_sources": [
+        {
+          "title": "WHO event-based surveillance",
+          "url": "https://www.who.int/publications/i/item/WHO-HSE-GCR-LYO-2014.4",
+          "accessed": "2026-09-28",
+          "revision": "live page; no immutable revision recorded",
+          "scope": "Background method or evidence concept; does not validate the proposed task."
+        }
+      ]
+    },
+    "EC08": {
+      "question_id": "EC08",
+      "question_version": "1.0.0",
+      "domain": "Epidemiology",
+      "domain_page": "references/domains/epidemiology.md#ec08",
+      "decision_unit": "One mapped case cluster × testing-change explanation",
+      "question": "Is the documented increase in testing a supported explanation for the excess cases in this mapped cluster?",
+      "options": [
+        {
+          "option_id": "1",
+          "label": "Supported as a sufficient explanation",
+          "definition": "Supplied analyses and contextual evidence support the named factor accounting for the full observed difference under prespecified sufficiency criteria.",
+          "definition_status": "editorial proposal; expert review pending"
+        },
+        {
+          "option_id": "2",
+          "label": "Supported as a partial explanation only",
+          "definition": "Evidence supports a contribution, but also establishes that the named factor alone is insufficient under those criteria.",
+          "definition_status": "editorial proposal; expert review pending"
+        },
+        {
+          "option_id": "3",
+          "label": "Evidence argues against this explanation",
+          "definition": "Adequate evidence is inconsistent with the named factor explaining the observed difference.",
+          "definition_status": "editorial proposal; expert review pending"
+        },
+        {
+          "option_id": "4",
+          "label": "Conflicting evidence",
+          "definition": "Comparable evidence supports incompatible conclusions about the named factor.",
+          "definition_status": "editorial proposal; expert review pending"
+        },
+        {
+          "option_id": "5",
+          "label": "Insufficient evidence",
+          "definition": "Decisive information is missing, inaccessible or too incomplete to assign another category. This is not a negative finding.",
+          "definition_status": "editorial proposal; expert review pending"
+        }
+      ],
+      "scientific_status": "proposed task; no model execution or biomedical validation",
+      "accepted_inputs": "Cluster statistics, population denominators, testing volumes, positivity, case definitions and testing-policy dates, with criteria for sufficiency.",
+      "minimum_context": "Cluster statistics, population denominators, testing volumes, positivity, case definitions and testing-policy dates, with criteria for sufficiency.",
+      "required_fields": [
+        {
+          "name": "cluster_summary",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "population_denominators",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "testing_and_positivity",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "testing_policy_dates",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "sufficiency_criteria",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "source_ids",
+          "supplier": "Local provenance index",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        }
+      ],
+      "optional_fields": [
+        "retrieval_coverage",
+        "source_version",
+        "computed_result_provenance",
+        "selected_set_version"
+      ],
+      "context_provider": "Researcher and specialist tools; optional source-linked factual extraction",
+      "upstream_results": "Prepare identifiers, timing, QC and relevant quantitative or specialist findings. Use quantitative decomposition directly when the supplied structured analysis resolves the explanation.",
+      "optional_llm_extraction": "Extract reusable source-linked facts and qualifying passages; do not supply a verdict for the same question.",
+      "reuse_unit": "One mapped case cluster × testing-change explanation × source version × protocol version",
+      "remaining_semantic_work": "Resolve contextual applicability or narrative relations not already settled by trusted structured fields.",
+      "bypass_when": "Use quantitative decomposition directly when the supplied structured analysis resolves the explanation.",
+      "abstention_option_id": "5",
+      "abstain_when": "Hold for missing decisive context, out-of-domain input or low reliability; a substantive Insufficient evidence label is distinct from system abstention.",
+      "independent_unit": "One mapped case cluster × testing-change explanation",
+      "combine_outside_model": "Combine separately evaluated criteria with a prespecified application rule; preserve conflicts and missingness. Do not multiply unrelated answer probabilities.",
+      "routing": "Supported/applicable findings → retain for the next research step; contrary/nonqualifying findings → record the reason, without automatic irreversible exclusion; mixed/conflicting/insufficient/invalid → retrieve evidence or expert review.",
+      "expert_task": "Review original sources, task definitions and unresolved context with the appropriate domain specialist.",
+      "must_not_imply": "Testing changes and transmission changes can coexist. Do not infer causality or compute cluster significance from narrative evidence alone.",
+      "validation_proposal": "Adjudicated cluster dossiers with testing changes; compare with spatial-statistical baselines and audit incorrectly dismissed signals.",
+      "examples": {
+        "input": {
+          "synthetic": true,
+          "raw_material_description": "One mapped case cluster × testing-change explanation",
+          "available_excerpt": "SYNTHETIC: Case counts and testing volume both increased in district D after a new testing site opened. Positivity and population denominators are missing."
+        },
+        "assembled_context": {
+          "synthetic": true,
+          "question_id": "EC08",
+          "question_version": "1.0.0",
+          "candidate_id": "synthetic-ec08",
+          "context_version": "1.0.0",
+          "study_context": {},
+          "computed_results": [],
+          "evidence_items": [
+            {
+              "evidence_id": "EC08-E1",
+              "source_id": "EC08-SYNTHETIC",
+              "source_location": "references/domains/epidemiology.md#ec08-synthetic-example",
+              "extraction_method": "authored synthetic vignette",
+              "excerpt": "SYNTHETIC: Case counts and testing volume both increased in district D after a new testing site opened. Positivity and population denominators are missing."
+            }
+          ],
+          "context_fields": {
+            "cluster_summary": null,
+            "population_denominators": null,
+            "testing_and_positivity": null,
+            "testing_policy_dates": null,
+            "sufficiency_criteria": null,
+            "source_ids": [
+              "EC08-SYNTHETIC"
+            ]
+          },
+          "missing_fields": [
+            "cluster_summary",
+            "population_denominators",
+            "testing_and_positivity",
+            "testing_policy_dates",
+            "sufficiency_criteria"
+          ],
+          "preparation_status": "synthetic_unmapped_example",
+          "token_audit": {
+            "status": "unverified",
+            "tokenizer_revision": null,
+            "packed_token_count": null,
+            "truncation": null
+          },
+          "mapping_note": "Illustrative source passage only; required facts have not been mapped. Do not run this incomplete example or infer a reference label."
+        }
+      },
+      "source_rows": {},
+      "content_origin": {
+        "kind": "author-requested catalogue extension",
+        "proposal_id": "P03",
+        "revision_id": "REV-009",
+        "date": "2026-09-28",
+        "review_status": "editorial proposal; expert review pending"
+      },
+      "related_question_ids": [],
+      "background_sources": [
+        {
+          "title": "WHO event-based surveillance",
+          "url": "https://www.who.int/publications/i/item/WHO-HSE-GCR-LYO-2014.4",
+          "accessed": "2026-09-28",
+          "revision": "live page; no immutable revision recorded",
+          "scope": "Background method or evidence concept; does not validate the proposed task."
+        }
+      ]
+    },
+    "EC09": {
+      "question_id": "EC09",
+      "question_version": "1.0.0",
+      "domain": "Epidemiology",
+      "domain_page": "references/domains/epidemiology.md#ec09",
+      "decision_unit": "One immunity-duration assumption × SEIR simulation period",
+      "question": "Does the supplied evidence support assuming that immunity persists throughout this SEIR simulation period?",
+      "options": [
+        {
+          "option_id": "1",
+          "label": "Supported over the specified period",
+          "definition": "Relevant evidence supports persistence of immunity for the specified population and simulation horizon.",
+          "definition_status": "editorial proposal; expert review pending"
+        },
+        {
+          "option_id": "2",
+          "label": "Contradicted by documented waning or reinfection",
+          "definition": "Relevant evidence documents waning or reinfection incompatible with the stated persistence assumption.",
+          "definition_status": "editorial proposal; expert review pending"
+        },
+        {
+          "option_id": "3",
+          "label": "Conflicting evidence",
+          "definition": "Comparable studies provide incompatible support for the assumption.",
+          "definition_status": "editorial proposal; expert review pending"
+        },
+        {
+          "option_id": "4",
+          "label": "Insufficient evidence",
+          "definition": "Decisive information is missing, inaccessible or too incomplete to assign another category. This is not a negative finding.",
+          "definition_status": "editorial proposal; expert review pending"
+        }
+      ],
+      "scientific_status": "proposed task; no model execution or biomedical validation",
+      "accepted_inputs": "Pathogen, population, simulation horizon, immunity assumptions and relevant evidence. A corresponding SEIRS question can evaluate the assumed return to susceptibility.",
+      "minimum_context": "Pathogen, population, simulation horizon, immunity assumptions and relevant evidence. A corresponding SEIRS question can evaluate the assumed return to susceptibility.",
+      "required_fields": [
+        {
+          "name": "pathogen_and_population",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "simulation_horizon",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "immunity_assumption",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "immunity_evidence",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "source_ids",
+          "supplier": "Local provenance index",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        }
+      ],
+      "optional_fields": [
+        "retrieval_coverage",
+        "source_version",
+        "computed_result_provenance",
+        "selected_set_version"
+      ],
+      "context_provider": "Researcher and specialist tools; optional source-linked factual extraction",
+      "upstream_results": "Prepare identifiers, timing, QC and relevant quantitative or specialist findings. Use established protocol rules when evidence scope and immunity duration settle applicability.",
+      "optional_llm_extraction": "Extract reusable source-linked facts and qualifying passages; do not supply a verdict for the same question.",
+      "reuse_unit": "One immunity-duration assumption × SEIR simulation period × source version × protocol version",
+      "remaining_semantic_work": "Resolve contextual applicability or narrative relations not already settled by trusted structured fields.",
+      "bypass_when": "Use established protocol rules when evidence scope and immunity duration settle applicability.",
+      "abstention_option_id": "4",
+      "abstain_when": "Hold for missing decisive context, out-of-domain input or low reliability; a substantive Insufficient evidence label is distinct from system abstention.",
+      "independent_unit": "One immunity-duration assumption × SEIR simulation period",
+      "combine_outside_model": "Combine separately evaluated criteria with a prespecified application rule; preserve conflicts and missingness. Do not multiply unrelated answer probabilities.",
+      "routing": "Supported/applicable findings → retain for the next research step; contrary/nonqualifying findings → record the reason, without automatic irreversible exclusion; mixed/conflicting/insufficient/invalid → retrieve evidence or expert review.",
+      "expert_task": "Review original sources, task definitions and unresolved context with the appropriate domain specialist.",
+      "must_not_imply": "The answer does not estimate parameters, choose a best-fitting model or validate a forecast. Review return-to-susceptibility assumptions separately for SEIRS.",
+      "validation_proposal": "Expert labels for assumption–evidence pairs; independently evaluate model sensitivity and out-of-time forecast performance.",
+      "examples": {
+        "input": {
+          "synthetic": true,
+          "raw_material_description": "One immunity-duration assumption × SEIR simulation period",
+          "available_excerpt": "SYNTHETIC: A proposed simulation lasts six months. The supplied immunity study follows participants for only four weeks."
+        },
+        "assembled_context": {
+          "synthetic": true,
+          "question_id": "EC09",
+          "question_version": "1.0.0",
+          "candidate_id": "synthetic-ec09",
+          "context_version": "1.0.0",
+          "study_context": {},
+          "computed_results": [],
+          "evidence_items": [
+            {
+              "evidence_id": "EC09-E1",
+              "source_id": "EC09-SYNTHETIC",
+              "source_location": "references/domains/epidemiology.md#ec09-synthetic-example",
+              "extraction_method": "authored synthetic vignette",
+              "excerpt": "SYNTHETIC: A proposed simulation lasts six months. The supplied immunity study follows participants for only four weeks."
+            }
+          ],
+          "context_fields": {
+            "pathogen_and_population": null,
+            "simulation_horizon": null,
+            "immunity_assumption": null,
+            "immunity_evidence": null,
+            "source_ids": [
+              "EC09-SYNTHETIC"
+            ]
+          },
+          "missing_fields": [
+            "pathogen_and_population",
+            "simulation_horizon",
+            "immunity_assumption",
+            "immunity_evidence"
+          ],
+          "preparation_status": "synthetic_unmapped_example",
+          "token_audit": {
+            "status": "unverified",
+            "tokenizer_revision": null,
+            "packed_token_count": null,
+            "truncation": null
+          },
+          "mapping_note": "Illustrative source passage only; required facts have not been mapped. Do not run this incomplete example or infer a reference label."
+        }
+      },
+      "source_rows": {},
+      "content_origin": {
+        "kind": "author-requested catalogue extension",
+        "proposal_id": "P04",
+        "revision_id": "REV-009",
+        "date": "2026-09-28",
+        "review_status": "editorial proposal; expert review pending"
+      },
+      "related_question_ids": [],
+      "background_sources": [
+        {
+          "title": "CDC SEIR outbreak modeling",
+          "url": "https://www.cdc.gov/cfa-behind-the-model/php/data-research/local-measles-disease-modeling/index.html",
+          "accessed": "2026-09-28",
+          "revision": "live page; no immutable revision recorded",
+          "scope": "Background method or evidence concept; does not validate the proposed task."
+        }
+      ]
+    },
+    "EC10": {
+      "question_id": "EC10",
+      "question_version": "1.0.0",
+      "domain": "Epidemiology",
+      "domain_page": "references/domains/epidemiology.md#ec10",
+      "decision_unit": "One forecast departure × reporting-delay explanation",
+      "question": "Does the evidence support reporting delays as an explanation for the recent difference between observed and predicted case counts?",
+      "options": [
+        {
+          "option_id": "1",
+          "label": "Supported as a sufficient explanation",
+          "definition": "Supplied analyses and contextual evidence support the named factor accounting for the full observed difference under prespecified sufficiency criteria.",
+          "definition_status": "editorial proposal; expert review pending"
+        },
+        {
+          "option_id": "2",
+          "label": "Supported as a partial explanation only",
+          "definition": "Evidence supports a contribution, but also establishes that the named factor alone is insufficient under those criteria.",
+          "definition_status": "editorial proposal; expert review pending"
+        },
+        {
+          "option_id": "3",
+          "label": "Evidence argues against this explanation",
+          "definition": "Adequate evidence is inconsistent with the named factor explaining the observed difference.",
+          "definition_status": "editorial proposal; expert review pending"
+        },
+        {
+          "option_id": "4",
+          "label": "Conflicting evidence",
+          "definition": "Comparable evidence supports incompatible conclusions about the named factor.",
+          "definition_status": "editorial proposal; expert review pending"
+        },
+        {
+          "option_id": "5",
+          "label": "Insufficient evidence",
+          "definition": "Decisive information is missing, inaccessible or too incomplete to assign another category. This is not a negative finding.",
+          "definition_status": "editorial proposal; expert review pending"
+        }
+      ],
+      "scientific_status": "proposed task; no model execution or biomedical validation",
+      "accepted_inputs": "Observed and predicted counts, prediction intervals, reporting-delay distributions, backfill and surveillance notes.",
+      "minimum_context": "Observed and predicted counts, prediction intervals, reporting-delay distributions, backfill and surveillance notes.",
+      "required_fields": [
+        {
+          "name": "observed_and_predicted_counts",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "prediction_intervals",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "reporting_delay_summary",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "backfill",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "surveillance_notes",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "sufficiency_criteria",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "source_ids",
+          "supplier": "Local provenance index",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        }
+      ],
+      "optional_fields": [
+        "retrieval_coverage",
+        "source_version",
+        "computed_result_provenance",
+        "selected_set_version"
+      ],
+      "context_provider": "Researcher and specialist tools; optional source-linked factual extraction",
+      "upstream_results": "Prepare identifiers, timing, QC and relevant quantitative or specialist findings. Use validated nowcasting and reporting-delay corrections when they fully explain the difference.",
+      "optional_llm_extraction": "Extract reusable source-linked facts and qualifying passages; do not supply a verdict for the same question.",
+      "reuse_unit": "One forecast departure × reporting-delay explanation × source version × protocol version",
+      "remaining_semantic_work": "Resolve contextual applicability or narrative relations not already settled by trusted structured fields.",
+      "bypass_when": "Use validated nowcasting and reporting-delay corrections when they fully explain the difference.",
+      "abstention_option_id": "5",
+      "abstain_when": "Hold for missing decisive context, out-of-domain input or low reliability; a substantive Insufficient evidence label is distinct from system abstention.",
+      "independent_unit": "One forecast departure × reporting-delay explanation",
+      "combine_outside_model": "Combine separately evaluated criteria with a prespecified application rule; preserve conflicts and missingness. Do not multiply unrelated answer probabilities.",
+      "routing": "Supported/applicable findings → retain for the next research step; contrary/nonqualifying findings → record the reason, without automatic irreversible exclusion; mixed/conflicting/insufficient/invalid → retrieve evidence or expert review.",
+      "expert_task": "Review original sources, task definitions and unresolved context with the appropriate domain specialist.",
+      "must_not_imply": "A reporting-delay explanation does not establish absence of a transmission change or fix the epidemic model.",
+      "validation_proposal": "Retrospective rolling-origin evaluation using archived data vintages; assess explanation labels and downstream forecast revisions.",
+      "examples": {
+        "input": {
+          "synthetic": true,
+          "raw_material_description": "One forecast departure × reporting-delay explanation",
+          "available_excerpt": "SYNTHETIC: Recent reported counts fall below a forecast interval. Reporting logs mention a laboratory backlog; the subsequent backfill is unavailable."
+        },
+        "assembled_context": {
+          "synthetic": true,
+          "question_id": "EC10",
+          "question_version": "1.0.0",
+          "candidate_id": "synthetic-ec10",
+          "context_version": "1.0.0",
+          "study_context": {},
+          "computed_results": [],
+          "evidence_items": [
+            {
+              "evidence_id": "EC10-E1",
+              "source_id": "EC10-SYNTHETIC",
+              "source_location": "references/domains/epidemiology.md#ec10-synthetic-example",
+              "extraction_method": "authored synthetic vignette",
+              "excerpt": "SYNTHETIC: Recent reported counts fall below a forecast interval. Reporting logs mention a laboratory backlog; the subsequent backfill is unavailable."
+            }
+          ],
+          "context_fields": {
+            "observed_and_predicted_counts": null,
+            "prediction_intervals": null,
+            "reporting_delay_summary": null,
+            "backfill": null,
+            "surveillance_notes": null,
+            "sufficiency_criteria": null,
+            "source_ids": [
+              "EC10-SYNTHETIC"
+            ]
+          },
+          "missing_fields": [
+            "observed_and_predicted_counts",
+            "prediction_intervals",
+            "reporting_delay_summary",
+            "backfill",
+            "surveillance_notes",
+            "sufficiency_criteria"
+          ],
+          "preparation_status": "synthetic_unmapped_example",
+          "token_audit": {
+            "status": "unverified",
+            "tokenizer_revision": null,
+            "packed_token_count": null,
+            "truncation": null
+          },
+          "mapping_note": "Illustrative source passage only; required facts have not been mapped. Do not run this incomplete example or infer a reference label."
+        }
+      },
+      "source_rows": {},
+      "content_origin": {
+        "kind": "author-requested catalogue extension",
+        "proposal_id": "P05",
+        "revision_id": "REV-009",
+        "date": "2026-09-28",
+        "review_status": "editorial proposal; expert review pending"
+      },
+      "related_question_ids": [],
+      "background_sources": [
+        {
+          "title": "CDC SEIR outbreak modeling",
+          "url": "https://www.cdc.gov/cfa-behind-the-model/php/data-research/local-measles-disease-modeling/index.html",
+          "accessed": "2026-09-28",
+          "revision": "live page; no immutable revision recorded",
+          "scope": "Background method or evidence concept; does not validate the proposed task."
+        },
+        {
+          "title": "WHO event-based surveillance",
+          "url": "https://www.who.int/publications/i/item/WHO-HSE-GCR-LYO-2014.4",
+          "accessed": "2026-09-28",
+          "revision": "live page; no immutable revision recorded",
+          "scope": "Background method or evidence concept; does not validate the proposed task."
+        }
+      ]
+    },
+    "EC11": {
+      "question_id": "EC11",
+      "question_version": "1.0.0",
+      "domain": "Epidemiology",
+      "domain_page": "references/domains/epidemiology.md#ec11",
+      "decision_unit": "One exposure report × syndrome definition × forecast cutoff",
+      "question": "Does this report document a qualifying exposure relevant to [syndrome] that was known by the forecast cutoff?",
+      "options": [
+        {
+          "option_id": "1",
+          "label": "Qualifying exposure documented",
+          "definition": "An actual qualifying exposure occurred and its report was available by the forecast cutoff.",
+          "definition_status": "editorial proposal; expert review pending"
+        },
+        {
+          "option_id": "2",
+          "label": "Related but nonqualifying exposure",
+          "definition": "An actual exposure is described but fails the supplied relevance, event-time or information-availability criteria.",
+          "definition_status": "editorial proposal; expert review pending"
+        },
+        {
+          "option_id": "3",
+          "label": "Qualifying exposure explicitly denied",
+          "definition": "The relevant exposure is explicitly denied in the reviewed report.",
+          "definition_status": "editorial proposal; expert review pending"
+        },
+        {
+          "option_id": "4",
+          "label": "Hypothetical exposure only",
+          "definition": "Only a possible future or hypothetical exposure is described.",
+          "definition_status": "editorial proposal; expert review pending"
+        },
+        {
+          "option_id": "5",
+          "label": "Insufficient evidence",
+          "definition": "Decisive information is missing, inaccessible or too incomplete to assign another category. This is not a negative finding.",
+          "definition_status": "editorial proposal; expert review pending"
+        }
+      ],
+      "scientific_status": "proposed task; no model execution or biomedical validation",
+      "accepted_inputs": "Exposure definition, original report, event date, availability date and forecast cutoff.",
+      "minimum_context": "Exposure definition, original report, event date, availability date and forecast cutoff.",
+      "required_fields": [
+        {
+          "name": "exposure_definition",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "original_report",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "event_date",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "report_availability_date",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "forecast_cutoff",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "source_ids",
+          "supplier": "Local provenance index",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        }
+      ],
+      "optional_fields": [
+        "retrieval_coverage",
+        "source_version",
+        "computed_result_provenance",
+        "selected_set_version"
+      ],
+      "context_provider": "Researcher and specialist tools; optional source-linked factual extraction",
+      "upstream_results": "Prepare identifiers, timing, QC and relevant quantitative or specialist findings. Use reliable exposure tags and timestamps directly when qualification is unambiguous.",
+      "optional_llm_extraction": "Extract reusable source-linked facts and qualifying passages; do not supply a verdict for the same question.",
+      "reuse_unit": "One exposure report × syndrome definition × forecast cutoff × source version × protocol version",
+      "remaining_semantic_work": "Resolve contextual applicability or narrative relations not already settled by trusted structured fields.",
+      "bypass_when": "Use reliable exposure tags and timestamps directly when qualification is unambiguous.",
+      "abstention_option_id": "5",
+      "abstain_when": "Hold for missing decisive context, out-of-domain input or low reliability; a substantive Insufficient evidence label is distinct from system abstention.",
+      "independent_unit": "One exposure report × syndrome definition × forecast cutoff",
+      "combine_outside_model": "Combine separately evaluated criteria with a prespecified application rule; preserve conflicts and missingness. Do not multiply unrelated answer probabilities.",
+      "routing": "Supported/applicable findings → retain for the next research step; contrary/nonqualifying findings → record the reason, without automatic irreversible exclusion; mixed/conflicting/insufficient/invalid → retrieve evidence or expert review.",
+      "expert_task": "Review original sources, task definitions and unresolved context with the appropriate domain specialist.",
+      "must_not_imply": "The label is a candidate forecasting input, not proof of predictive gain. Event time alone does not establish information availability.",
+      "validation_proposal": "Adjudicated narratives and timestamp audit; assess incremental forecast performance with temporal holdouts.",
+      "examples": {
+        "input": {
+          "synthetic": true,
+          "raw_material_description": "One exposure report × syndrome definition × forecast cutoff",
+          "available_excerpt": "SYNTHETIC: An exposure occurred on day 1 but was first reported on day 8. The forecast cutoff is day 5."
+        },
+        "assembled_context": {
+          "synthetic": true,
+          "question_id": "EC11",
+          "question_version": "1.0.0",
+          "candidate_id": "synthetic-ec11",
+          "context_version": "1.0.0",
+          "study_context": {},
+          "computed_results": [],
+          "evidence_items": [
+            {
+              "evidence_id": "EC11-E1",
+              "source_id": "EC11-SYNTHETIC",
+              "source_location": "references/domains/epidemiology.md#ec11-synthetic-example",
+              "extraction_method": "authored synthetic vignette",
+              "excerpt": "SYNTHETIC: An exposure occurred on day 1 but was first reported on day 8. The forecast cutoff is day 5."
+            }
+          ],
+          "context_fields": {
+            "exposure_definition": null,
+            "original_report": null,
+            "event_date": null,
+            "report_availability_date": null,
+            "forecast_cutoff": null,
+            "source_ids": [
+              "EC11-SYNTHETIC"
+            ]
+          },
+          "missing_fields": [
+            "exposure_definition",
+            "original_report",
+            "event_date",
+            "report_availability_date",
+            "forecast_cutoff"
+          ],
+          "preparation_status": "synthetic_unmapped_example",
+          "token_audit": {
+            "status": "unverified",
+            "tokenizer_revision": null,
+            "packed_token_count": null,
+            "truncation": null
+          },
+          "mapping_note": "Illustrative source passage only; required facts have not been mapped. Do not run this incomplete example or infer a reference label."
+        }
+      },
+      "source_rows": {},
+      "content_origin": {
+        "kind": "author-requested catalogue extension",
+        "proposal_id": "P06",
+        "revision_id": "REV-009",
+        "date": "2026-09-28",
+        "review_status": "editorial proposal; expert review pending"
+      },
+      "related_question_ids": [],
+      "background_sources": [
+        {
+          "title": "WHO event-based surveillance",
+          "url": "https://www.who.int/publications/i/item/WHO-HSE-GCR-LYO-2014.4",
+          "accessed": "2026-09-28",
+          "revision": "live page; no immutable revision recorded",
+          "scope": "Background method or evidence concept; does not validate the proposed task."
+        },
+        {
+          "title": "scikit-learn data leakage and feature selection",
+          "url": "https://scikit-learn.org/stable/common_pitfalls.html",
+          "accessed": "2026-09-28",
+          "revision": "live page; no immutable revision recorded",
+          "scope": "Background method or evidence concept; does not validate the proposed task."
+        }
+      ]
+    },
+    "PM01": {
+      "question_id": "PM01",
+      "question_version": "1.0.0",
+      "domain": "Precision medicine",
+      "domain_page": "references/domains/precision-medicine.md#pm01",
+      "decision_unit": "One variant × therapy × patient tumor context",
+      "question": "How does the supplied evidence relate variant [X] to response to therapy [Y] in the patient’s tumor context?",
+      "options": [
+        {
+          "option_id": "1",
+          "label": "Supports sensitivity only",
+          "definition": "Applicable evidence supports sensitivity and no applicable resistance evidence is present in the defined review scope.",
+          "definition_status": "editorial proposal; expert review pending"
+        },
+        {
+          "option_id": "2",
+          "label": "Supports resistance only",
+          "definition": "Applicable evidence supports resistance and no applicable sensitivity evidence is present in the defined review scope.",
+          "definition_status": "editorial proposal; expert review pending"
+        },
+        {
+          "option_id": "3",
+          "label": "Contains both sensitivity and resistance evidence",
+          "definition": "Applicable sensitivity and resistance evidence are both present; differences in context require review.",
+          "definition_status": "editorial proposal; expert review pending"
+        },
+        {
+          "option_id": "4",
+          "label": "No applicable response evidence in the reviewed material",
+          "definition": "A sufficiently complete, defined review found no applicable sensitivity or resistance evidence for this variant–therapy–tumor context.",
+          "definition_status": "editorial proposal; expert review pending"
+        },
+        {
+          "option_id": "5",
+          "label": "Insufficient evidence",
+          "definition": "Decisive information is missing, inaccessible or too incomplete to assign another category. This is not a negative finding.",
+          "definition_status": "editorial proposal; expert review pending"
+        }
+      ],
+      "scientific_status": "proposed task; no model execution or biomedical validation",
+      "accepted_inputs": "Exact alteration, tumor type, treatment, line of therapy, relevant studies or curated knowledgebase entries and their versions. “No applicable evidence” requires an adequate, defined review scope; an incomplete dossier is insufficient evidence.",
+      "minimum_context": "Exact alteration, tumor type, treatment, line of therapy, relevant studies or curated knowledgebase entries and their versions. “No applicable evidence” requires an adequate, defined review scope; an incomplete dossier is insufficient evidence.",
+      "required_fields": [
+        {
+          "name": "variant",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "tumor_context",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "therapy_and_line",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "response_evidence",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "review_scope",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "evidence_applicability_criteria",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "source_ids",
+          "supplier": "Local provenance index",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        }
+      ],
+      "optional_fields": [
+        "retrieval_coverage",
+        "source_version",
+        "computed_result_provenance",
+        "selected_set_version"
+      ],
+      "context_provider": "Researcher and specialist tools; optional source-linked factual extraction",
+      "upstream_results": "Prepare identifiers, timing, QC and relevant quantitative or specialist findings. Use a curated, versioned knowledgebase directly when the exact variant, tumor and therapy match and evidence scope is unambiguous.",
+      "optional_llm_extraction": "Extract reusable source-linked facts and qualifying passages; do not supply a verdict for the same question.",
+      "reuse_unit": "One variant × therapy × patient tumor context × source version × protocol version",
+      "remaining_semantic_work": "Resolve contextual applicability or narrative relations not already settled by trusted structured fields.",
+      "bypass_when": "Use a curated, versioned knowledgebase directly when the exact variant, tumor and therapy match and evidence scope is unambiguous.",
+      "abstention_option_id": "5",
+      "abstain_when": "Hold for missing decisive context, out-of-domain input or low reliability; a substantive Insufficient evidence label is distinct from system abstention.",
+      "independent_unit": "One variant × therapy × patient tumor context",
+      "combine_outside_model": "Combine separately evaluated criteria with a prespecified application rule; preserve conflicts and missingness. Do not multiply unrelated answer probabilities.",
+      "routing": "Supported/applicable findings → retain for the next research step; contrary/nonqualifying findings → record the reason, without automatic irreversible exclusion; mixed/conflicting/insufficient/invalid → retrieve evidence or expert review.",
+      "expert_task": "Review original sources, task definitions and unresolved context with the appropriate domain specialist.",
+      "must_not_imply": "This is evidence triage, not an autonomous treatment recommendation; no applicable evidence is not evidence of no treatment effect.",
+      "validation_proposal": "Molecular-tumor-board or expert evidence labels; test tumor-context transfer, evidence conflicts and missed relevant studies.",
+      "examples": {
+        "input": {
+          "synthetic": true,
+          "raw_material_description": "One variant × therapy × patient tumor context",
+          "available_excerpt": "SYNTHETIC: A study links variant V to sensitivity to therapy T in tumor A. The proposed patient context is tumor B; applicability criteria are absent."
+        },
+        "assembled_context": {
+          "synthetic": true,
+          "question_id": "PM01",
+          "question_version": "1.0.0",
+          "candidate_id": "synthetic-pm01",
+          "context_version": "1.0.0",
+          "study_context": {},
+          "computed_results": [],
+          "evidence_items": [
+            {
+              "evidence_id": "PM01-E1",
+              "source_id": "PM01-SYNTHETIC",
+              "source_location": "references/domains/precision-medicine.md#pm01-synthetic-example",
+              "extraction_method": "authored synthetic vignette",
+              "excerpt": "SYNTHETIC: A study links variant V to sensitivity to therapy T in tumor A. The proposed patient context is tumor B; applicability criteria are absent."
+            }
+          ],
+          "context_fields": {
+            "variant": null,
+            "tumor_context": null,
+            "therapy_and_line": null,
+            "response_evidence": null,
+            "review_scope": null,
+            "evidence_applicability_criteria": null,
+            "source_ids": [
+              "PM01-SYNTHETIC"
+            ]
+          },
+          "missing_fields": [
+            "variant",
+            "tumor_context",
+            "therapy_and_line",
+            "response_evidence",
+            "review_scope",
+            "evidence_applicability_criteria"
+          ],
+          "preparation_status": "synthetic_unmapped_example",
+          "token_audit": {
+            "status": "unverified",
+            "tokenizer_revision": null,
+            "packed_token_count": null,
+            "truncation": null
+          },
+          "mapping_note": "Illustrative source passage only; required facts have not been mapped. Do not run this incomplete example or infer a reference label."
+        }
+      },
+      "source_rows": {},
+      "content_origin": {
+        "kind": "author-requested catalogue extension",
+        "proposal_id": "I03",
+        "revision_id": "REV-009",
+        "date": "2026-09-28",
+        "review_status": "editorial proposal; expert review pending"
+      },
+      "related_question_ids": [],
+      "background_sources": [
+        {
+          "title": "CIViC evidence types",
+          "url": "https://docs.civicdb.org/en/latest/model/evidence/type.html",
+          "accessed": "2026-09-28",
+          "revision": "live page; no immutable revision recorded",
+          "scope": "Background method or evidence concept; does not validate the proposed task."
+        }
+      ]
+    },
+    "PM02": {
+      "question_id": "PM02",
+      "question_version": "1.0.0",
+      "domain": "Precision medicine",
+      "domain_page": "references/domains/precision-medicine.md#pm02",
+      "decision_unit": "One clinical or laboratory feature × prediction time",
+      "question": "Would feature [X] be available at the intended prediction time?",
+      "options": [
+        {
+          "option_id": "1",
+          "label": "Available",
+          "definition": "The feature is accessible at or before prediction time throughout the defined record scope.",
+          "definition_status": "editorial proposal; expert review pending"
+        },
+        {
+          "option_id": "2",
+          "label": "Unavailable",
+          "definition": "The feature is not accessible by prediction time throughout the defined record scope.",
+          "definition_status": "editorial proposal; expert review pending"
+        },
+        {
+          "option_id": "3",
+          "label": "Availability varies across records",
+          "definition": "Known records or workflows include both available and unavailable instances; this is observed variation, not missing timestamps.",
+          "definition_status": "editorial proposal; expert review pending"
+        },
+        {
+          "option_id": "4",
+          "label": "Insufficient evidence",
+          "definition": "Decisive information is missing, inaccessible or too incomplete to assign another category. This is not a negative finding.",
+          "definition_status": "editorial proposal; expert review pending"
+        }
+      ],
+      "scientific_status": "proposed task; no model execution or biomedical validation",
+      "accepted_inputs": "Feature definition, prediction time, measurement and result-release timestamps, clinical workflow and the defined record scope. Assess outcome leakage separately.",
+      "minimum_context": "Feature definition, prediction time, measurement and result-release timestamps, clinical workflow and the defined record scope. Assess outcome leakage separately.",
+      "required_fields": [
+        {
+          "name": "feature_definition",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "prediction_time",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "measurement_and_availability_times",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "clinical_workflow",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "record_scope",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "source_ids",
+          "supplier": "Local provenance index",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        }
+      ],
+      "optional_fields": [
+        "retrieval_coverage",
+        "source_version",
+        "computed_result_provenance",
+        "selected_set_version"
+      ],
+      "context_provider": "Researcher and specialist tools; optional source-linked factual extraction",
+      "upstream_results": "Prepare identifiers, timing, QC and relevant quantitative or specialist findings. Compare trustworthy availability timestamps directly; use semantic review only for unresolved narrative workflow timing.",
+      "optional_llm_extraction": "Extract reusable source-linked facts and qualifying passages; do not supply a verdict for the same question.",
+      "reuse_unit": "One clinical or laboratory feature × prediction time × source version × protocol version",
+      "remaining_semantic_work": "Resolve contextual applicability or narrative relations not already settled by trusted structured fields.",
+      "bypass_when": "Compare trustworthy availability timestamps directly; use semantic review only for unresolved narrative workflow timing.",
+      "abstention_option_id": "4",
+      "abstain_when": "Hold for missing decisive context, out-of-domain input or low reliability; a substantive Insufficient evidence label is distinct from system abstention.",
+      "independent_unit": "One clinical or laboratory feature × prediction time",
+      "combine_outside_model": "Combine separately evaluated criteria with a prespecified application rule; preserve conflicts and missingness. Do not multiply unrelated answer probabilities.",
+      "routing": "Supported/applicable findings → retain for the next research step; contrary/nonqualifying findings → record the reason, without automatic irreversible exclusion; mixed/conflicting/insufficient/invalid → retrieve evidence or expert review.",
+      "expert_task": "Review original sources, task definitions and unresolved context with the appropriate domain specialist.",
+      "must_not_imply": "Availability alone does not establish relevance or absence of other target leakage. Audit outcome-derived features and train/test leakage separately.",
+      "validation_proposal": "Audit against actual availability logs; validate availability at intended deployment sites and times.",
+      "examples": {
+        "input": {
+          "synthetic": true,
+          "raw_material_description": "One clinical or laboratory feature × prediction time",
+          "available_excerpt": "SYNTHETIC: A blood sample is collected at admission, but its assay result is released the next afternoon. The prediction is made at admission."
+        },
+        "assembled_context": {
+          "synthetic": true,
+          "question_id": "PM02",
+          "question_version": "1.0.0",
+          "candidate_id": "synthetic-pm02",
+          "context_version": "1.0.0",
+          "study_context": {},
+          "computed_results": [],
+          "evidence_items": [
+            {
+              "evidence_id": "PM02-E1",
+              "source_id": "PM02-SYNTHETIC",
+              "source_location": "references/domains/precision-medicine.md#pm02-synthetic-example",
+              "extraction_method": "authored synthetic vignette",
+              "excerpt": "SYNTHETIC: A blood sample is collected at admission, but its assay result is released the next afternoon. The prediction is made at admission."
+            }
+          ],
+          "context_fields": {
+            "feature_definition": null,
+            "prediction_time": null,
+            "measurement_and_availability_times": null,
+            "clinical_workflow": null,
+            "record_scope": null,
+            "source_ids": [
+              "PM02-SYNTHETIC"
+            ]
+          },
+          "missing_fields": [
+            "feature_definition",
+            "prediction_time",
+            "measurement_and_availability_times",
+            "clinical_workflow",
+            "record_scope"
+          ],
+          "preparation_status": "synthetic_unmapped_example",
+          "token_audit": {
+            "status": "unverified",
+            "tokenizer_revision": null,
+            "packed_token_count": null,
+            "truncation": null
+          },
+          "mapping_note": "Illustrative source passage only; required facts have not been mapped. Do not run this incomplete example or infer a reference label."
+        }
+      },
+      "source_rows": {},
+      "content_origin": {
+        "kind": "author-requested catalogue extension",
+        "proposal_id": "I04",
+        "revision_id": "REV-009",
+        "date": "2026-09-28",
+        "review_status": "editorial proposal; expert review pending"
+      },
+      "related_question_ids": [],
+      "background_sources": [
+        {
+          "title": "scikit-learn data leakage and feature selection",
+          "url": "https://scikit-learn.org/stable/common_pitfalls.html",
+          "accessed": "2026-09-28",
+          "revision": "live page; no immutable revision recorded",
+          "scope": "Background method or evidence concept; does not validate the proposed task."
+        }
+      ]
+    },
+    "PM03": {
+      "question_id": "PM03",
+      "question_version": "1.0.0",
+      "domain": "Precision medicine",
+      "domain_page": "references/domains/precision-medicine.md#pm03",
+      "decision_unit": "One candidate feature × fixed selected feature set × intended use",
+      "question": "Does feature [X] represent a clinically relevant dimension not represented by the fixed selected feature set?",
+      "options": [
+        {
+          "option_id": "1",
+          "label": "Adds a distinct relevant dimension",
+          "definition": "The candidate represents a supported, relevant clinical dimension absent from the fixed selected set.",
+          "definition_status": "editorial proposal; expert review pending"
+        },
+        {
+          "option_id": "2",
+          "label": "Represents an already-covered dimension",
+          "definition": "Its supported relevant dimension is already represented by the selected set.",
+          "definition_status": "editorial proposal; expert review pending"
+        },
+        {
+          "option_id": "3",
+          "label": "Falls outside the intended prediction task",
+          "definition": "Its supported role does not address the intended prediction task.",
+          "definition_status": "editorial proposal; expert review pending"
+        },
+        {
+          "option_id": "4",
+          "label": "Mixed or context-dependent relevance",
+          "definition": "Its role depends on context or includes both represented and additional relevant dimensions.",
+          "definition_status": "editorial proposal; expert review pending"
+        },
+        {
+          "option_id": "5",
+          "label": "Insufficient evidence",
+          "definition": "Decisive information is missing, inaccessible or too incomplete to assign another category. This is not a negative finding.",
+          "definition_status": "editorial proposal; expert review pending"
+        }
+      ],
+      "scientific_status": "proposed task; no model execution or biomedical validation",
+      "accepted_inputs": "Selected-set snapshot, feature definitions, measurement timing, intended use and biological or clinical evidence.",
+      "minimum_context": "Selected-set snapshot, feature definitions, measurement timing, intended use and biological or clinical evidence.",
+      "required_fields": [
+        {
+          "name": "intended_use",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "candidate_feature",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "selected_set_snapshot",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "feature_definitions",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "clinical_role_evidence",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "source_ids",
+          "supplier": "Local provenance index",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        }
+      ],
+      "optional_fields": [
+        "retrieval_coverage",
+        "source_version",
+        "computed_result_provenance",
+        "selected_set_version"
+      ],
+      "context_provider": "Researcher and specialist tools; optional source-linked factual extraction",
+      "upstream_results": "Prepare identifiers, timing, QC and relevant quantitative or specialist findings. Use curated feature-role mappings when they resolve coverage; calculate redundancy and incremental predictive performance with statistical methods.",
+      "optional_llm_extraction": "Extract reusable source-linked facts and qualifying passages; do not supply a verdict for the same question.",
+      "reuse_unit": "One candidate feature × fixed selected feature set × intended use × source version × protocol version",
+      "remaining_semantic_work": "Resolve contextual applicability or narrative relations not already settled by trusted structured fields.",
+      "bypass_when": "Use curated feature-role mappings when they resolve coverage; calculate redundancy and incremental predictive performance with statistical methods.",
+      "abstention_option_id": "5",
+      "abstain_when": "Hold for missing decisive context, out-of-domain input or low reliability; a substantive Insufficient evidence label is distinct from system abstention.",
+      "independent_unit": "One candidate feature × fixed selected feature set × intended use",
+      "combine_outside_model": "Combine separately evaluated criteria with a prespecified application rule; preserve conflicts and missingness. Do not multiply unrelated answer probabilities.",
+      "routing": "Supported/applicable findings → retain for the next research step; contrary/nonqualifying findings → record the reason, without automatic irreversible exclusion; mixed/conflicting/insufficient/invalid → retrieve evidence or expert review.",
+      "expert_task": "Review original sources, task definitions and unresolved context with the appropriate domain specialist.",
+      "must_not_imply": "Clinical complementarity is not statistical independence or extra predictive value. Do not discard useful correlated predictors on this answer alone.",
+      "validation_proposal": "Blinded feature-role review and separate nested feature-selection evaluation with patient/site/time holdouts.",
+      "examples": {
+        "input": {
+          "synthetic": true,
+          "raw_material_description": "One candidate feature × fixed selected feature set × intended use",
+          "available_excerpt": "SYNTHETIC: The selected features measure renal function. Candidate X measures physical function; the prediction endpoint is not specified."
+        },
+        "assembled_context": {
+          "synthetic": true,
+          "question_id": "PM03",
+          "question_version": "1.0.0",
+          "candidate_id": "synthetic-pm03",
+          "context_version": "1.0.0",
+          "study_context": {},
+          "computed_results": [],
+          "evidence_items": [
+            {
+              "evidence_id": "PM03-E1",
+              "source_id": "PM03-SYNTHETIC",
+              "source_location": "references/domains/precision-medicine.md#pm03-synthetic-example",
+              "extraction_method": "authored synthetic vignette",
+              "excerpt": "SYNTHETIC: The selected features measure renal function. Candidate X measures physical function; the prediction endpoint is not specified."
+            }
+          ],
+          "context_fields": {
+            "intended_use": null,
+            "candidate_feature": null,
+            "selected_set_snapshot": null,
+            "feature_definitions": null,
+            "clinical_role_evidence": null,
+            "source_ids": [
+              "PM03-SYNTHETIC"
+            ]
+          },
+          "missing_fields": [
+            "intended_use",
+            "candidate_feature",
+            "selected_set_snapshot",
+            "feature_definitions",
+            "clinical_role_evidence"
+          ],
+          "preparation_status": "synthetic_unmapped_example",
+          "token_audit": {
+            "status": "unverified",
+            "tokenizer_revision": null,
+            "packed_token_count": null,
+            "truncation": null
+          },
+          "mapping_note": "Illustrative source passage only; required facts have not been mapped. Do not run this incomplete example or infer a reference label."
+        }
+      },
+      "source_rows": {},
+      "content_origin": {
+        "kind": "author-requested catalogue extension",
+        "proposal_id": "I05",
+        "revision_id": "REV-009",
+        "date": "2026-09-28",
+        "review_status": "editorial proposal; expert review pending"
+      },
+      "related_question_ids": [
+        "BM01"
+      ],
+      "background_sources": [
+        {
+          "title": "scikit-learn data leakage and feature selection",
+          "url": "https://scikit-learn.org/stable/common_pitfalls.html",
+          "accessed": "2026-09-28",
+          "revision": "live page; no immutable revision recorded",
+          "scope": "Background method or evidence concept; does not validate the proposed task."
+        }
+      ]
+    },
+    "PM04": {
+      "question_id": "PM04",
+      "question_version": "1.0.0",
+      "domain": "Precision medicine",
+      "domain_page": "references/domains/precision-medicine.md#pm04",
+      "decision_unit": "One laboratory abnormality × named medication or handling explanation",
+      "question": "Does the supplied evidence support [medication or sample-handling factor] as an explanation for the abnormal [laboratory result]?",
+      "options": [
+        {
+          "option_id": "1",
+          "label": "Supported as a sufficient explanation",
+          "definition": "Supplied analyses and contextual evidence support the named factor accounting for the full observed difference under prespecified sufficiency criteria.",
+          "definition_status": "editorial proposal; expert review pending"
+        },
+        {
+          "option_id": "2",
+          "label": "Supported as a partial explanation only",
+          "definition": "Evidence supports a contribution, but also establishes that the named factor alone is insufficient under those criteria.",
+          "definition_status": "editorial proposal; expert review pending"
+        },
+        {
+          "option_id": "3",
+          "label": "Evidence argues against this explanation",
+          "definition": "Adequate evidence is inconsistent with the named factor explaining the observed difference.",
+          "definition_status": "editorial proposal; expert review pending"
+        },
+        {
+          "option_id": "4",
+          "label": "Conflicting evidence",
+          "definition": "Comparable evidence supports incompatible conclusions about the named factor.",
+          "definition_status": "editorial proposal; expert review pending"
+        },
+        {
+          "option_id": "5",
+          "label": "Insufficient evidence",
+          "definition": "Decisive information is missing, inaccessible or too incomplete to assign another category. This is not a negative finding.",
+          "definition_status": "editorial proposal; expert review pending"
+        }
+      ],
+      "scientific_status": "proposed task; no model execution or biomedical validation",
+      "accepted_inputs": "Assay, specimen, measurement time, treatment or collection history and evidence for the specified interference or biological effect.",
+      "minimum_context": "Assay, specimen, measurement time, treatment or collection history and evidence for the specified interference or biological effect.",
+      "required_fields": [
+        {
+          "name": "laboratory_result",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "assay_and_specimen",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "measurement_time",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "exposure_or_handling_history",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "mechanism_evidence",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "sufficiency_criteria",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "source_ids",
+          "supplier": "Local provenance index",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        }
+      ],
+      "optional_fields": [
+        "retrieval_coverage",
+        "source_version",
+        "computed_result_provenance",
+        "selected_set_version"
+      ],
+      "context_provider": "Researcher and specialist tools; optional source-linked factual extraction",
+      "upstream_results": "Prepare identifiers, timing, QC and relevant quantitative or specialist findings. Use validated assay-interference rules when the exact method, exposure and timing fully determine applicability.",
+      "optional_llm_extraction": "Extract reusable source-linked facts and qualifying passages; do not supply a verdict for the same question.",
+      "reuse_unit": "One laboratory abnormality × named medication or handling explanation × source version × protocol version",
+      "remaining_semantic_work": "Resolve contextual applicability or narrative relations not already settled by trusted structured fields.",
+      "bypass_when": "Use validated assay-interference rules when the exact method, exposure and timing fully determine applicability.",
+      "abstention_option_id": "5",
+      "abstain_when": "Hold for missing decisive context, out-of-domain input or low reliability; a substantive Insufficient evidence label is distinct from system abstention.",
+      "independent_unit": "One laboratory abnormality × named medication or handling explanation",
+      "combine_outside_model": "Combine separately evaluated criteria with a prespecified application rule; preserve conflicts and missingness. Do not multiply unrelated answer probabilities.",
+      "routing": "Supported/applicable findings → retain for the next research step; contrary/nonqualifying findings → record the reason, without automatic irreversible exclusion; mixed/conflicting/insufficient/invalid → retrieve evidence or expert review.",
+      "expert_task": "Review original sources, task definitions and unresolved context with the appropriate domain specialist.",
+      "must_not_imply": "A supported explanation does not rule out disease or authorize a treatment change. Evaluate each alternative factor separately.",
+      "validation_proposal": "Expert laboratory dossiers with confirmed interferences and biological effects; assess missed competing explanations.",
+      "examples": {
+        "input": {
+          "synthetic": true,
+          "raw_material_description": "One laboratory abnormality × named medication or handling explanation",
+          "available_excerpt": "SYNTHETIC: A specimen was stored for 48 hours before analysis. The supplied interference note concerns a different assay; method equivalence is unknown."
+        },
+        "assembled_context": {
+          "synthetic": true,
+          "question_id": "PM04",
+          "question_version": "1.0.0",
+          "candidate_id": "synthetic-pm04",
+          "context_version": "1.0.0",
+          "study_context": {},
+          "computed_results": [],
+          "evidence_items": [
+            {
+              "evidence_id": "PM04-E1",
+              "source_id": "PM04-SYNTHETIC",
+              "source_location": "references/domains/precision-medicine.md#pm04-synthetic-example",
+              "extraction_method": "authored synthetic vignette",
+              "excerpt": "SYNTHETIC: A specimen was stored for 48 hours before analysis. The supplied interference note concerns a different assay; method equivalence is unknown."
+            }
+          ],
+          "context_fields": {
+            "laboratory_result": null,
+            "assay_and_specimen": null,
+            "measurement_time": null,
+            "exposure_or_handling_history": null,
+            "mechanism_evidence": null,
+            "sufficiency_criteria": null,
+            "source_ids": [
+              "PM04-SYNTHETIC"
+            ]
+          },
+          "missing_fields": [
+            "laboratory_result",
+            "assay_and_specimen",
+            "measurement_time",
+            "exposure_or_handling_history",
+            "mechanism_evidence",
+            "sufficiency_criteria"
+          ],
+          "preparation_status": "synthetic_unmapped_example",
+          "token_audit": {
+            "status": "unverified",
+            "tokenizer_revision": null,
+            "packed_token_count": null,
+            "truncation": null
+          },
+          "mapping_note": "Illustrative source passage only; required facts have not been mapped. Do not run this incomplete example or infer a reference label."
+        }
+      },
+      "source_rows": {},
+      "content_origin": {
+        "kind": "author-requested catalogue extension",
+        "proposal_id": "I06",
+        "revision_id": "REV-009",
+        "date": "2026-09-28",
+        "review_status": "editorial proposal; expert review pending"
+      },
+      "related_question_ids": [
+        "BM05",
+        "PR03"
+      ],
+      "background_sources": []
+    },
+    "HI05": {
+      "question_id": "HI05",
+      "question_version": "1.0.0",
+      "domain": "Histology",
+      "domain_page": "references/domains/histology.md#hi05",
+      "decision_unit": "One H&E region × study inflammation criteria",
+      "question": "Do the reported H&E findings support inflammation in region [R] under the study’s histological criteria?",
+      "options": [
+        {
+          "option_id": "1",
+          "label": "Supported",
+          "definition": "Usable reported findings satisfy the study’s inflammation criteria for this region.",
+          "definition_status": "editorial proposal; expert review pending"
+        },
+        {
+          "option_id": "2",
+          "label": "Not supported",
+          "definition": "Adequate findings fail those criteria; this does not establish absence outside the sampled region.",
+          "definition_status": "editorial proposal; expert review pending"
+        },
+        {
+          "option_id": "3",
+          "label": "Conflicting evidence",
+          "definition": "Usable comparable assessments of the same region give incompatible evidence under the same criteria.",
+          "definition_status": "editorial proposal; expert review pending"
+        },
+        {
+          "option_id": "4",
+          "label": "Insufficient evidence",
+          "definition": "Decisive information is missing, inaccessible or too incomplete to assign another category. This is not a negative finding.",
+          "definition_status": "editorial proposal; expert review pending"
+        }
+      ],
+      "scientific_status": "proposed task; no model execution or biomedical validation",
+      "accepted_inputs": "Region identity, pathologist or validated image-analysis descriptors, infiltrate distribution, tissue compartment, quality and inflammation criteria.",
+      "minimum_context": "Region identity, pathologist or validated image-analysis descriptors, infiltrate distribution, tissue compartment, quality and inflammation criteria.",
+      "required_fields": [
+        {
+          "name": "region_id",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "tissue_compartment",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "histology_descriptors",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "inflammation_criteria",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "processing_and_image_QC",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "source_ids",
+          "supplier": "Local provenance index",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        }
+      ],
+      "optional_fields": [
+        "retrieval_coverage",
+        "source_version",
+        "computed_result_provenance",
+        "selected_set_version"
+      ],
+      "context_provider": "Researcher and specialist tools; optional source-linked factual extraction",
+      "upstream_results": "Prepare identifiers, timing, QC and relevant quantitative or specialist findings. Use a validated histological score or structured pathology criteria directly when they fully settle the classification.",
+      "optional_llm_extraction": "Extract reusable source-linked facts and qualifying passages; do not supply a verdict for the same question.",
+      "reuse_unit": "One H&E region × study inflammation criteria × source version × protocol version",
+      "remaining_semantic_work": "Resolve contextual applicability or narrative relations not already settled by trusted structured fields.",
+      "bypass_when": "Use a validated histological score or structured pathology criteria directly when they fully settle the classification.",
+      "abstention_option_id": "4",
+      "abstain_when": "Hold for missing decisive context, out-of-domain input or low reliability; a substantive Insufficient evidence label is distinct from system abstention.",
+      "independent_unit": "One H&E region × study inflammation criteria",
+      "combine_outside_model": "Combine separately evaluated criteria with a prespecified application rule; preserve conflicts and missingness. Do not multiply unrelated answer probabilities.",
+      "routing": "Supported/applicable findings → retain for the next research step; contrary/nonqualifying findings → record the reason, without automatic irreversible exclusion; mixed/conflicting/insufficient/invalid → retrieve evidence or expert review.",
+      "expert_task": "Review original sources, task definitions and unresolved context with the appropriate domain specialist.",
+      "must_not_imply": "The model evaluates supplied descriptors, not raw H&E pixels. Inflammation does not identify its cause or a specific pathogen.",
+      "validation_proposal": "Blinded pathology labels with patient/site holdouts and artifact-rich controls; evaluate descriptor extraction separately.",
+      "examples": {
+        "input": {
+          "synthetic": true,
+          "raw_material_description": "One H&E region × study inflammation criteria",
+          "available_excerpt": "SYNTHETIC: Region R is described as containing a focal inflammatory infiltrate. The tissue compartment and study scoring criteria are not supplied."
+        },
+        "assembled_context": {
+          "synthetic": true,
+          "question_id": "HI05",
+          "question_version": "1.0.0",
+          "candidate_id": "synthetic-hi05",
+          "context_version": "1.0.0",
+          "study_context": {},
+          "computed_results": [],
+          "evidence_items": [
+            {
+              "evidence_id": "HI05-E1",
+              "source_id": "HI05-SYNTHETIC",
+              "source_location": "references/domains/histology.md#hi05-synthetic-example",
+              "extraction_method": "authored synthetic vignette",
+              "excerpt": "SYNTHETIC: Region R is described as containing a focal inflammatory infiltrate. The tissue compartment and study scoring criteria are not supplied."
+            }
+          ],
+          "context_fields": {
+            "region_id": null,
+            "tissue_compartment": null,
+            "histology_descriptors": null,
+            "inflammation_criteria": null,
+            "processing_and_image_QC": null,
+            "source_ids": [
+              "HI05-SYNTHETIC"
+            ]
+          },
+          "missing_fields": [
+            "region_id",
+            "tissue_compartment",
+            "histology_descriptors",
+            "inflammation_criteria",
+            "processing_and_image_QC"
+          ],
+          "preparation_status": "synthetic_unmapped_example",
+          "token_audit": {
+            "status": "unverified",
+            "tokenizer_revision": null,
+            "packed_token_count": null,
+            "truncation": null
+          },
+          "mapping_note": "Illustrative source passage only; required facts have not been mapped. Do not run this incomplete example or infer a reference label."
+        }
+      },
+      "source_rows": {},
+      "content_origin": {
+        "kind": "author-requested catalogue extension",
+        "proposal_id": "T01",
+        "revision_id": "REV-009",
+        "date": "2026-09-28",
+        "review_status": "editorial proposal; expert review pending"
+      },
+      "related_question_ids": [
+        "HI01",
+        "HI02"
+      ],
+      "background_sources": []
+    },
+    "RI01": {
+      "question_id": "RI01",
+      "question_version": "1.0.0",
+      "domain": "Radiology",
+      "domain_page": "references/domains/radiology.md#ri01",
+      "decision_unit": "One CT or X-ray study × target imaging-pattern criteria",
+      "question": "Do the reported CT or chest X-ray findings meet the study’s imaging criteria for [target lesion or pattern]?",
+      "options": [
+        {
+          "option_id": "1",
+          "label": "Meets criteria",
+          "definition": "Usable reported findings satisfy the modality-specific target criteria.",
+          "definition_status": "editorial proposal; expert review pending"
+        },
+        {
+          "option_id": "2",
+          "label": "Does not meet criteria",
+          "definition": "Adequate reported findings fail the specified criteria.",
+          "definition_status": "editorial proposal; expert review pending"
+        },
+        {
+          "option_id": "3",
+          "label": "Conflicting findings",
+          "definition": "Comparable usable interpretations for the same target and examination conflict.",
+          "definition_status": "editorial proposal; expert review pending"
+        },
+        {
+          "option_id": "4",
+          "label": "Insufficient evidence",
+          "definition": "Decisive information is missing, inaccessible or too incomplete to assign another category. This is not a negative finding.",
+          "definition_status": "editorial proposal; expert review pending"
+        }
+      ],
+      "scientific_status": "proposed task; no model execution or biomedical validation",
+      "accepted_inputs": "Modality-specific criteria, radiology report or extracted findings, anatomy, acquisition quality and relevant prior images. Define separate criteria for CT and radiography where needed.",
+      "minimum_context": "Modality-specific criteria, radiology report or extracted findings, anatomy, acquisition quality and relevant prior images. Define separate criteria for CT and radiography where needed.",
+      "required_fields": [
+        {
+          "name": "modality_and_anatomy",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "reported_findings",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "target_pattern_criteria",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "acquisition_quality",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "comparison_images",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "source_ids",
+          "supplier": "Local provenance index",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        }
+      ],
+      "optional_fields": [
+        "retrieval_coverage",
+        "source_version",
+        "computed_result_provenance",
+        "selected_set_version"
+      ],
+      "context_provider": "Researcher and specialist tools; optional source-linked factual extraction",
+      "upstream_results": "Prepare identifiers, timing, QC and relevant quantitative or specialist findings. Use validated structured reporting or imaging classifiers when they already resolve the target criteria.",
+      "optional_llm_extraction": "Extract reusable source-linked facts and qualifying passages; do not supply a verdict for the same question.",
+      "reuse_unit": "One CT or X-ray study × target imaging-pattern criteria × source version × protocol version",
+      "remaining_semantic_work": "Resolve contextual applicability or narrative relations not already settled by trusted structured fields.",
+      "bypass_when": "Use validated structured reporting or imaging classifiers when they already resolve the target criteria.",
+      "abstention_option_id": "4",
+      "abstain_when": "Hold for missing decisive context, out-of-domain input or low reliability; a substantive Insufficient evidence label is distinct from system abstention.",
+      "independent_unit": "One CT or X-ray study × target imaging-pattern criteria",
+      "combine_outside_model": "Combine separately evaluated criteria with a prespecified application rule; preserve conflicts and missingness. Do not multiply unrelated answer probabilities.",
+      "routing": "Supported/applicable findings → retain for the next research step; contrary/nonqualifying findings → record the reason, without automatic irreversible exclusion; mixed/conflicting/insufficient/invalid → retrieve evidence or expert review.",
+      "expert_task": "Review original sources, task definitions and unresolved context with the appropriate domain specialist.",
+      "must_not_imply": "No direct pixel interpretation, segmentation or lesion measurement is assumed. Imaging compatibility does not by itself establish pathogen identity.",
+      "validation_proposal": "Radiologist-adjudicated reports/findings; split by patient and site, stratify by modality and evaluate image-to-descriptor errors separately.",
+      "examples": {
+        "input": {
+          "synthetic": true,
+          "raw_material_description": "One CT or X-ray study × target imaging-pattern criteria",
+          "available_excerpt": "SYNTHETIC: A CT report describes a focal opacity. The study’s target-lesion criteria and image-quality assessment are not supplied."
+        },
+        "assembled_context": {
+          "synthetic": true,
+          "question_id": "RI01",
+          "question_version": "1.0.0",
+          "candidate_id": "synthetic-ri01",
+          "context_version": "1.0.0",
+          "study_context": {},
+          "computed_results": [],
+          "evidence_items": [
+            {
+              "evidence_id": "RI01-E1",
+              "source_id": "RI01-SYNTHETIC",
+              "source_location": "references/domains/radiology.md#ri01-synthetic-example",
+              "extraction_method": "authored synthetic vignette",
+              "excerpt": "SYNTHETIC: A CT report describes a focal opacity. The study’s target-lesion criteria and image-quality assessment are not supplied."
+            }
+          ],
+          "context_fields": {
+            "modality_and_anatomy": null,
+            "reported_findings": null,
+            "target_pattern_criteria": null,
+            "acquisition_quality": null,
+            "comparison_images": null,
+            "source_ids": [
+              "RI01-SYNTHETIC"
+            ]
+          },
+          "missing_fields": [
+            "modality_and_anatomy",
+            "reported_findings",
+            "target_pattern_criteria",
+            "acquisition_quality",
+            "comparison_images"
+          ],
+          "preparation_status": "synthetic_unmapped_example",
+          "token_audit": {
+            "status": "unverified",
+            "tokenizer_revision": null,
+            "packed_token_count": null,
+            "truncation": null
+          },
+          "mapping_note": "Illustrative source passage only; required facts have not been mapped. Do not run this incomplete example or infer a reference label."
+        }
+      },
+      "source_rows": {},
+      "content_origin": {
+        "kind": "author-requested catalogue extension",
+        "proposal_id": "T02",
+        "revision_id": "REV-009",
+        "date": "2026-09-28",
+        "review_status": "editorial proposal; expert review pending"
+      },
+      "related_question_ids": [],
+      "background_sources": [
+        {
+          "title": "WHO chest imaging recommendations",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK586653/",
+          "accessed": "2026-09-28",
+          "revision": "live page; no immutable revision recorded",
+          "scope": "Background method or evidence concept; does not validate the proposed task."
+        }
+      ]
+    },
+    "HI06": {
+      "question_id": "HI06",
+      "question_version": "1.0.0",
+      "domain": "Histology",
+      "domain_page": "references/domains/histology.md#hi06",
+      "decision_unit": "One tissue pathogen assay × specimen or region",
+      "question": "Does the tissue-assay evidence support detection of pathogen [X] in region or specimen [R]?",
+      "options": [
+        {
+          "option_id": "1",
+          "label": "Detection supported",
+          "definition": "Valid, applicable assay evidence supports detection in the specified specimen or region, without a comparable conflicting result.",
+          "definition_status": "editorial proposal; expert review pending"
+        },
+        {
+          "option_id": "2",
+          "label": "Not detected by the specified assay",
+          "definition": "Valid applicable assay evidence reports a nondetect within its stated scope and limits, without a comparable conflicting result.",
+          "definition_status": "editorial proposal; expert review pending"
+        },
+        {
+          "option_id": "3",
+          "label": "Conflicting assay evidence",
+          "definition": "Technically usable, comparable assays give incompatible detection evidence for the same specimen or region.",
+          "definition_status": "editorial proposal; expert review pending"
+        },
+        {
+          "option_id": "4",
+          "label": "Assay uninterpretable or invalid",
+          "definition": "Documented technical failure prevents interpreting the decisive assay; assess this before biological categories.",
+          "definition_status": "editorial proposal; expert review pending"
+        },
+        {
+          "option_id": "5",
+          "label": "Insufficient evidence",
+          "definition": "Decisive information is missing, inaccessible or too incomplete to assign another category. This is not a negative finding.",
+          "definition_status": "editorial proposal; expert review pending"
+        }
+      ],
+      "scientific_status": "proposed task; no model execution or biomedical validation",
+      "accepted_inputs": "Specimen provenance, assay identity and target, controls, technical quality, localization and assay results. Known QC failure takes precedence over interpreting positive or negative findings.",
+      "minimum_context": "Specimen provenance, assay identity and target, controls, technical quality, localization and assay results. Known QC failure takes precedence over interpreting positive or negative findings.",
+      "required_fields": [
+        {
+          "name": "pathogen",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "specimen_and_region",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "assay_and_target",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "assay_results",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "controls_and_QC",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "localization",
+          "supplier": "Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        },
+        {
+          "name": "source_ids",
+          "supplier": "Local provenance index",
+          "requirement": "Provide a traceable value or explicit missingness; unknown values remain null."
+        }
+      ],
+      "optional_fields": [
+        "retrieval_coverage",
+        "source_version",
+        "computed_result_provenance",
+        "selected_set_version"
+      ],
+      "context_provider": "Researcher and specialist tools; optional source-linked factual extraction",
+      "upstream_results": "Prepare identifiers, timing, QC and relevant quantitative or specialist findings. Use validated assay calls and QC rules directly when specimen identity, localization and interpretation are unambiguous.",
+      "optional_llm_extraction": "Extract reusable source-linked facts and qualifying passages; do not supply a verdict for the same question.",
+      "reuse_unit": "One tissue pathogen assay × specimen or region × source version × protocol version",
+      "remaining_semantic_work": "Resolve contextual applicability or narrative relations not already settled by trusted structured fields.",
+      "bypass_when": "Use validated assay calls and QC rules directly when specimen identity, localization and interpretation are unambiguous.",
+      "abstention_option_id": "5",
+      "abstain_when": "Hold for missing decisive context, out-of-domain input or low reliability; a substantive Insufficient evidence label is distinct from system abstention.",
+      "independent_unit": "One tissue pathogen assay × specimen or region",
+      "combine_outside_model": "Combine separately evaluated criteria with a prespecified application rule; preserve conflicts and missingness. Do not multiply unrelated answer probabilities.",
+      "routing": "Supported/applicable findings → retain for the next research step; contrary/nonqualifying findings → record the reason, without automatic irreversible exclusion; mixed/conflicting/insufficient/invalid → retrieve evidence or expert review.",
+      "expert_task": "Review original sources, task definitions and unresolved context with the appropriate domain specialist.",
+      "must_not_imply": "A nondetect does not establish absence. Detection does not establish viability, causation or infection; radiology alone does not identify the agent.",
+      "validation_proposal": "Expert adjudication with assay controls and orthogonal tests where appropriate; separate technical failures, contamination and biological disagreement.",
+      "examples": {
+        "input": {
+          "synthetic": true,
+          "raw_material_description": "One tissue pathogen assay × specimen or region",
+          "available_excerpt": "SYNTHETIC: A tissue pathogen assay reports a signal, but its negative control also fails the assay acceptance criteria."
+        },
+        "assembled_context": {
+          "synthetic": true,
+          "question_id": "HI06",
+          "question_version": "1.0.0",
+          "candidate_id": "synthetic-hi06",
+          "context_version": "1.0.0",
+          "study_context": {},
+          "computed_results": [],
+          "evidence_items": [
+            {
+              "evidence_id": "HI06-E1",
+              "source_id": "HI06-SYNTHETIC",
+              "source_location": "references/domains/histology.md#hi06-synthetic-example",
+              "extraction_method": "authored synthetic vignette",
+              "excerpt": "SYNTHETIC: A tissue pathogen assay reports a signal, but its negative control also fails the assay acceptance criteria."
+            }
+          ],
+          "context_fields": {
+            "pathogen": null,
+            "specimen_and_region": null,
+            "assay_and_target": null,
+            "assay_results": null,
+            "controls_and_QC": null,
+            "localization": null,
+            "source_ids": [
+              "HI06-SYNTHETIC"
+            ]
+          },
+          "missing_fields": [
+            "pathogen",
+            "specimen_and_region",
+            "assay_and_target",
+            "assay_results",
+            "controls_and_QC",
+            "localization"
+          ],
+          "preparation_status": "synthetic_unmapped_example",
+          "token_audit": {
+            "status": "unverified",
+            "tokenizer_revision": null,
+            "packed_token_count": null,
+            "truncation": null
+          },
+          "mapping_note": "Illustrative source passage only; required facts have not been mapped. Do not run this incomplete example or infer a reference label."
+        }
+      },
+      "source_rows": {},
+      "content_origin": {
+        "kind": "author-requested catalogue extension",
+        "proposal_id": "T03",
+        "revision_id": "REV-009",
+        "date": "2026-09-28",
+        "review_status": "editorial proposal; expert review pending"
+      },
+      "related_question_ids": [
+        "MB04"
+      ],
+      "background_sources": [
+        {
+          "title": "WHO chest imaging recommendations",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK586653/",
+          "accessed": "2026-09-28",
+          "revision": "live page; no immutable revision recorded",
+          "scope": "Background method or evidence concept; does not validate the proposed task."
+        }
+      ]
     }
-  }
+  },
+  "source_workbook_scope": "The unchanged workbook supplies the original 52 entries only. New entries have content_origin and empty source_rows; no original cell provenance is invented.",
+  "question_count": 65,
+  "domain_count": 13,
+  "insufficient_evidence_policy": "The legacy abstention_option_id names the insufficient-evidence category for compatibility; a substantive evidence-status judgment is distinct from a system declining to answer."
 }

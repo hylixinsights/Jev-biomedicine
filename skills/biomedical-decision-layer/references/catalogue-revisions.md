@@ -13,4 +13,12 @@ No original question or option has been silently changed. The workbook contains 
 | REV-007 | All synthetic vignettes | Short workbook examples do not populate every required field. | Preserve original text, map only explicit facts and show all remaining gaps. Use expanded synthetic demonstrations only when clearly identified. |
 | REV-008 | Laya integration | README describes an option-budget error while the pinned packer truncates text. | Inspect and test the chosen caller/configuration during future implementation before claiming length validation. |
 
-Adoption requires a named reviewer, rationale, affected IDs, version change and updates to derivatives and evaluation labels. Proposed definitions in this edition are not silently promoted to validated scientific criteria.
+## REV-009 — Multiscale project coverage in catalogue 1.1.0
+
+On 2026-09-28, the repository owner requested incorporation of the Figure 2 editorial proposals into Supplementary Table S1 and the GitHub resource. Editorial adoption adds 13 proposed tasks: EC06–EC11, PM01–PM04, HI05–HI06 and RI01. This is authorization to publish the proposed content, not recorded domain validation or an independent scientific review.
+
+The original 52 entries are unchanged. The [project guide](project-use-cases.md) maps the other 12 editorial examples to existing questions. PM02 is limited to feature availability; outcome-derived information and other leakage mechanisms require separate checks. EC11 records both event and information-availability timing. New options include explicit operational boundaries; the case hierarchy, sufficiency criteria, tissue-assay validity precedence and definition of an adequate evidence review need domain review before annotation.
+
+New entries have author-request provenance, question version 1.0.0, empty `source_rows` and no claimed original workbook cells. The catalogue version is 1.1.0; the archival workbook remains the authority for its original 52 entries. New contexts are synthetic, deliberately incomplete and unexecuted. There are no new reference labels or model outputs.
+
+Scientific adoption of provisional definitions requires a named domain reviewer, rationale, affected IDs and corresponding version/derivative updates. This release does not silently promote editorial definitions to validated criteria.

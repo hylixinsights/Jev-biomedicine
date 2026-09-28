@@ -2,7 +2,20 @@
 
 Date: 2026-09-28. Scope: documentation, source fidelity and preparation artifacts. **No Jev/Laya inference, training, calibration or biomedical validation was performed.**
 
-## Checks performed
+## Catalogue 1.1.0 and Supplementary Table S1
+
+- Verified 65 unique questions across 13 domains, including 13 new entries. All 52 original JSON entries are unchanged in full.
+- Rechecked the archival workbook checksum and all 156 original question/context/routing row mappings. New entries have separate provenance and empty source rows.
+- Confirmed exact agreement of question text, decision units, numbered labels and definitions across the JSON catalogue, domain cards and all 65 Word table rows. The Markdown table contains the same questions and options.
+- Parsed catalogue JSON and checked context required fields, types, option IDs and missingness lists. The existing schema files were not changed; a full external JSON Schema validator was unavailable for this update, so context-envelope checks were performed directly.
+- Checked relative skill links and anchors, including a standalone copied skill folder. The new project guide maps 25 editorial examples to 13 new and 12 existing questions.
+- Confirmed that the new example passages are synthetic and the new contexts are explicitly unmapped/incomplete. No answer or probability was added; existing demonstration results remain not run.
+- Rendered the updated Word table and visually reviewed all 17 pages. Increased table text to 9 pt, reconciled column widths, repeated the header and kept each question row together. Only document content and field-update settings changed in the source Word package; other package parts were preserved.
+- Kept temporary authoring, validation and rendering files outside the repository. Unrelated local manuscript drafts were not included in this publication.
+
+All operational definitions remain provisional. These checks establish consistency and document readability, not scientific validity or model performance.
+
+## Initial 1.0.0 checks
 
 - The archived workbook is byte-identical to the user-supplied file. SHA-256: `5e0f11c2363ebb296c8d397eff1d9c3c8e0ed234e8d06705a5a0ed2c1665bcbf`.
 - All 52 unique question IDs have exactly matching original rows in Questions, Context_design and Routing: 156 full row comparisons. Question wording and numbered option labels match exactly.

@@ -19,6 +19,20 @@ Technical sources below were inspected on **2026-09-28**. They support interface
 
 The consulted TypeSafe pages did not establish hosted fine-tuning support. The Laya README and packer differ in their descriptions of overlong options; the future adapter must resolve actual caller behavior. The source date is an inspection date, not a guarantee of future compatibility.
 
+## Catalogue 1.1.0 additions
+
+These primary sources were consulted on 2026-09-28 for the additional task designs. Live pages have no immutable revision recorded. They motivate evidence categories or analytical boundaries; they do not establish Jev/Laya performance for any new question.
+
+| Source | Scope |
+|---|---|
+| [WHO event-based surveillance](https://www.who.int/publications/i/item/WHO-HSE-GCR-LYO-2014.4) | Unstructured reports, early warning and assessment of suspected outbreak signals |
+| [CDC SEIR outbreak modeling](https://www.cdc.gov/cfa-behind-the-model/php/data-research/local-measles-disease-modeling/index.html) | Explicit assumptions, observed case data and quantitative outbreak forecasting |
+| [CIViC evidence types](https://docs.civicdb.org/en/latest/model/evidence/type.html) | Distinction between therapeutic-response evidence and other molecular associations |
+| [scikit-learn common pitfalls](https://scikit-learn.org/stable/common_pitfalls.html) | Information availability, leakage and independent evaluation of feature selection |
+| [WHO chest imaging recommendations](https://www.ncbi.nlm.nih.gov/books/NBK586653/) | COVID-19 example distinguishing imaging findings from pathogen confirmation; not a universal assay criterion |
+
+The specific new question wording and operational definitions are editorial proposals recorded in REV-009. Each study must supply its own case, imaging, assay, timing and sufficiency criteria. Entries without a new background citation are methodological extensions of the related original questions, not independently established diagnostic rules.
+
 ## Workbook source register
 
 The following entries are inherited verbatim from the original workbook. Their access dates are **workbook-reported**. Except for the technical sources explicitly listed above, these pages were not independently re-audited for this release. They are background references for upstream methods and evidence concepts, not training labels or validation of Jev/Laya.

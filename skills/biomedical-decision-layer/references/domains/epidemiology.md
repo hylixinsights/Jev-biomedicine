@@ -555,3 +555,382 @@ Assembled provenance wrapper (a field-mapping exercise, not a complete backend r
 Original cells: `Questions` row 49, `Context_design` same row, `Routing` same row. Background links from the workbook (not evidence of model performance):
 
 - [Background source 1](https://pmc.ncbi.nlm.nih.gov/articles/PMC2757457/)
+
+## Catalogue 1.1.0 extensions
+
+The following additions are proposed tasks with provisional answer definitions. Original entries above are unchanged.
+
+[EC06](#ec06) | [EC07](#ec07) | [EC08](#ec08) | [EC09](#ec09) | [EC10](#ec10) | [EC11](#ec11)
+
+<a id="ec06"></a>
+
+## EC06
+
+**Question:** Does this record meet the surveillance case definition for [condition] during [time window]?
+
+**Decision unit:** One clinical record × surveillance definition × time window
+
+| Option ID | Label | Proposed operational definition |
+|---|---|---|
+| 1 | Meets confirmed-case criteria | Meets the protocol’s confirmed-case criteria; this category takes precedence over probable and suspected categories. |
+| 2 | Meets probable-case criteria only | Meets probable-case criteria but not confirmed-case criteria under the supplied hierarchy. |
+| 3 | Meets suspected-case criteria only | Meets suspected-case criteria but not probable or confirmed criteria. |
+| 4 | Does not meet the case definition | Adequate records establish that the episode fails the operational case definition. |
+| 5 | Insufficient evidence | Decisive information is missing, inaccessible or too incomplete to assign another category. This is not a negative finding. |
+
+**Accepted inputs:** Exact surveillance definition, original passages, symptom onset, diagnostic evidence, negation and subject of the statements. Apply the definition’s hierarchy; if the study does not use these three case categories, replace them.
+
+**Minimum context:** Exact surveillance definition, original passages, symptom onset, diagnostic evidence, negation and subject of the statements. Apply the definition’s hierarchy; if the study does not use these three case categories, replace them.
+
+| Required field | Supplier |
+|---|---|
+| `case_definition` | Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping |
+| `original_passages` | Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping |
+| `episode_dates` | Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping |
+| `diagnostic_evidence` | Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping |
+| `negation_and_subject` | Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping |
+| `source_ids` | Local provenance index |
+
+**Upstream preparation:** Prepare identifiers, timing, QC and relevant quantitative or specialist findings. Use validated extraction and deterministic rules when all case criteria are explicit and reliably represented.
+
+**Optional cached extraction:** Extract reusable source-linked facts and qualifying passages; do not supply a verdict for the same question.
+
+**Reuse key:** One clinical record × surveillance definition × time window × source version × protocol version
+
+**Remaining semantic work:** Resolve contextual applicability or narrative relations not already settled by trusted structured fields.
+
+**Bypass Jev/Laya:** Use validated extraction and deterministic rules when all case criteria are explicit and reliably represented.
+
+**Abstain or escalate:** Hold for missing decisive context, out-of-domain input or low reliability; a substantive Insufficient evidence label is distinct from system abstention.
+
+**Combine outside the model:** Combine separately evaluated criteria with a prespecified application rule; preserve conflicts and missingness. Do not multiply unrelated answer probabilities.
+
+**Future routing:** Supported/applicable findings → retain for the next research step; contrary/nonqualifying findings → record the reason, without automatic irreversible exclusion; mixed/conflicting/insufficient/invalid → retrieve evidence or expert review.
+
+**Interpretation limit:** A disease mention is not a case. Category names and hierarchy must match the surveillance protocol.
+
+**Proposed validation:** Adjudicated record labels; split by patient, institution and time; measure category recall and case-count bias.
+
+<a id="ec06-synthetic-example"></a>
+
+### EC06 synthetic example
+
+SYNTHETIC: Record R describes fever and cough beginning on day 3. The supplied summary contains no laboratory result and no surveillance case definition.
+
+This is an unmapped, incomplete source vignette. The JSON context retains required-field gaps. No answer or model output is provided.
+
+**Provenance:** Author-requested extension, REV-009, catalogue 1.1.0; definitions require domain review. Not transcribed from the archival workbook.
+
+Background references, inspected 2026-09-28; not validation of this task:
+- [WHO event-based surveillance](https://www.who.int/publications/i/item/WHO-HSE-GCR-LYO-2014.4)
+
+<a id="ec07"></a>
+
+## EC07
+
+**Question:** Do these reports support a suspected outbreak in [location] during [time window] under the surveillance protocol?
+
+**Decision unit:** One location × time window × outbreak-signal definition
+
+| Option ID | Label | Proposed operational definition |
+|---|---|---|
+| 1 | Supported | The evidence satisfies the protocol’s criteria for a suspected outbreak signal. |
+| 2 | Not supported | Adequate evidence does not satisfy the stated signal criteria; this does not exclude an outbreak. |
+| 3 | Conflicting evidence | Comparable, usable evidence supports incompatible assessments under the same criteria. |
+| 4 | Insufficient evidence | Decisive information is missing, inaccessible or too incomplete to assign another category. This is not a negative finding. |
+
+**Accepted inputs:** Deduplicated reports, dated case summaries, baseline incidence, operational alert criteria, ascertainment changes and any computed excess or cluster statistics.
+
+**Minimum context:** Deduplicated reports, dated case summaries, baseline incidence, operational alert criteria, ascertainment changes and any computed excess or cluster statistics.
+
+| Required field | Supplier |
+|---|---|
+| `location` | Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping |
+| `time_window` | Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping |
+| `deduplicated_reports` | Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping |
+| `baseline_summary` | Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping |
+| `alert_criteria` | Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping |
+| `ascertainment_changes` | Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping |
+| `source_ids` | Local provenance index |
+
+**Upstream preparation:** Prepare identifiers, timing, QC and relevant quantitative or specialist findings. Apply alert thresholds directly when structured surveillance measures fully determine the signal.
+
+**Optional cached extraction:** Extract reusable source-linked facts and qualifying passages; do not supply a verdict for the same question.
+
+**Reuse key:** One location × time window × outbreak-signal definition × source version × protocol version
+
+**Remaining semantic work:** Resolve contextual applicability or narrative relations not already settled by trusted structured fields.
+
+**Bypass Jev/Laya:** Apply alert thresholds directly when structured surveillance measures fully determine the signal.
+
+**Abstain or escalate:** Hold for missing decisive context, out-of-domain input or low reliability; a substantive Insufficient evidence label is distinct from system abstention.
+
+**Combine outside the model:** Combine separately evaluated criteria with a prespecified application rule; preserve conflicts and missingness. Do not multiply unrelated answer probabilities.
+
+**Future routing:** Supported/applicable findings → retain for the next research step; contrary/nonqualifying findings → record the reason, without automatic irreversible exclusion; mixed/conflicting/insufficient/invalid → retrieve evidence or expert review.
+
+**Interpretation limit:** A supported signal is not a confirmed outbreak or a calibrated forecast probability.
+
+**Proposed validation:** Expert-adjudicated signals with geographic and temporal holdouts; measure detection delay, false alerts and missed events.
+
+<a id="ec07-synthetic-example"></a>
+
+### EC07 synthetic example
+
+SYNTHETIC: Three deduplicated reports describe a gastrointestinal syndrome in location L during week W. Baseline incidence and the alert protocol are not supplied.
+
+This is an unmapped, incomplete source vignette. The JSON context retains required-field gaps. No answer or model output is provided.
+
+**Provenance:** Author-requested extension, REV-009, catalogue 1.1.0; definitions require domain review. Not transcribed from the archival workbook.
+
+Background references, inspected 2026-09-28; not validation of this task:
+- [WHO event-based surveillance](https://www.who.int/publications/i/item/WHO-HSE-GCR-LYO-2014.4)
+
+<a id="ec08"></a>
+
+## EC08
+
+**Question:** Is the documented increase in testing a supported explanation for the excess cases in this mapped cluster?
+
+**Decision unit:** One mapped case cluster × testing-change explanation
+
+| Option ID | Label | Proposed operational definition |
+|---|---|---|
+| 1 | Supported as a sufficient explanation | Supplied analyses and contextual evidence support the named factor accounting for the full observed difference under prespecified sufficiency criteria. |
+| 2 | Supported as a partial explanation only | Evidence supports a contribution, but also establishes that the named factor alone is insufficient under those criteria. |
+| 3 | Evidence argues against this explanation | Adequate evidence is inconsistent with the named factor explaining the observed difference. |
+| 4 | Conflicting evidence | Comparable evidence supports incompatible conclusions about the named factor. |
+| 5 | Insufficient evidence | Decisive information is missing, inaccessible or too incomplete to assign another category. This is not a negative finding. |
+
+**Accepted inputs:** Cluster statistics, population denominators, testing volumes, positivity, case definitions and testing-policy dates, with criteria for sufficiency.
+
+**Minimum context:** Cluster statistics, population denominators, testing volumes, positivity, case definitions and testing-policy dates, with criteria for sufficiency.
+
+| Required field | Supplier |
+|---|---|
+| `cluster_summary` | Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping |
+| `population_denominators` | Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping |
+| `testing_and_positivity` | Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping |
+| `testing_policy_dates` | Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping |
+| `sufficiency_criteria` | Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping |
+| `source_ids` | Local provenance index |
+
+**Upstream preparation:** Prepare identifiers, timing, QC and relevant quantitative or specialist findings. Use quantitative decomposition directly when the supplied structured analysis resolves the explanation.
+
+**Optional cached extraction:** Extract reusable source-linked facts and qualifying passages; do not supply a verdict for the same question.
+
+**Reuse key:** One mapped case cluster × testing-change explanation × source version × protocol version
+
+**Remaining semantic work:** Resolve contextual applicability or narrative relations not already settled by trusted structured fields.
+
+**Bypass Jev/Laya:** Use quantitative decomposition directly when the supplied structured analysis resolves the explanation.
+
+**Abstain or escalate:** Hold for missing decisive context, out-of-domain input or low reliability; a substantive Insufficient evidence label is distinct from system abstention.
+
+**Combine outside the model:** Combine separately evaluated criteria with a prespecified application rule; preserve conflicts and missingness. Do not multiply unrelated answer probabilities.
+
+**Future routing:** Supported/applicable findings → retain for the next research step; contrary/nonqualifying findings → record the reason, without automatic irreversible exclusion; mixed/conflicting/insufficient/invalid → retrieve evidence or expert review.
+
+**Interpretation limit:** Testing changes and transmission changes can coexist. Do not infer causality or compute cluster significance from narrative evidence alone.
+
+**Proposed validation:** Adjudicated cluster dossiers with testing changes; compare with spatial-statistical baselines and audit incorrectly dismissed signals.
+
+<a id="ec08-synthetic-example"></a>
+
+### EC08 synthetic example
+
+SYNTHETIC: Case counts and testing volume both increased in district D after a new testing site opened. Positivity and population denominators are missing.
+
+This is an unmapped, incomplete source vignette. The JSON context retains required-field gaps. No answer or model output is provided.
+
+**Provenance:** Author-requested extension, REV-009, catalogue 1.1.0; definitions require domain review. Not transcribed from the archival workbook.
+
+Background references, inspected 2026-09-28; not validation of this task:
+- [WHO event-based surveillance](https://www.who.int/publications/i/item/WHO-HSE-GCR-LYO-2014.4)
+
+<a id="ec09"></a>
+
+## EC09
+
+**Question:** Does the supplied evidence support assuming that immunity persists throughout this SEIR simulation period?
+
+**Decision unit:** One immunity-duration assumption × SEIR simulation period
+
+| Option ID | Label | Proposed operational definition |
+|---|---|---|
+| 1 | Supported over the specified period | Relevant evidence supports persistence of immunity for the specified population and simulation horizon. |
+| 2 | Contradicted by documented waning or reinfection | Relevant evidence documents waning or reinfection incompatible with the stated persistence assumption. |
+| 3 | Conflicting evidence | Comparable studies provide incompatible support for the assumption. |
+| 4 | Insufficient evidence | Decisive information is missing, inaccessible or too incomplete to assign another category. This is not a negative finding. |
+
+**Accepted inputs:** Pathogen, population, simulation horizon, immunity assumptions and relevant evidence. A corresponding SEIRS question can evaluate the assumed return to susceptibility.
+
+**Minimum context:** Pathogen, population, simulation horizon, immunity assumptions and relevant evidence. A corresponding SEIRS question can evaluate the assumed return to susceptibility.
+
+| Required field | Supplier |
+|---|---|
+| `pathogen_and_population` | Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping |
+| `simulation_horizon` | Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping |
+| `immunity_assumption` | Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping |
+| `immunity_evidence` | Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping |
+| `source_ids` | Local provenance index |
+
+**Upstream preparation:** Prepare identifiers, timing, QC and relevant quantitative or specialist findings. Use established protocol rules when evidence scope and immunity duration settle applicability.
+
+**Optional cached extraction:** Extract reusable source-linked facts and qualifying passages; do not supply a verdict for the same question.
+
+**Reuse key:** One immunity-duration assumption × SEIR simulation period × source version × protocol version
+
+**Remaining semantic work:** Resolve contextual applicability or narrative relations not already settled by trusted structured fields.
+
+**Bypass Jev/Laya:** Use established protocol rules when evidence scope and immunity duration settle applicability.
+
+**Abstain or escalate:** Hold for missing decisive context, out-of-domain input or low reliability; a substantive Insufficient evidence label is distinct from system abstention.
+
+**Combine outside the model:** Combine separately evaluated criteria with a prespecified application rule; preserve conflicts and missingness. Do not multiply unrelated answer probabilities.
+
+**Future routing:** Supported/applicable findings → retain for the next research step; contrary/nonqualifying findings → record the reason, without automatic irreversible exclusion; mixed/conflicting/insufficient/invalid → retrieve evidence or expert review.
+
+**Interpretation limit:** The answer does not estimate parameters, choose a best-fitting model or validate a forecast. Review return-to-susceptibility assumptions separately for SEIRS.
+
+**Proposed validation:** Expert labels for assumption–evidence pairs; independently evaluate model sensitivity and out-of-time forecast performance.
+
+<a id="ec09-synthetic-example"></a>
+
+### EC09 synthetic example
+
+SYNTHETIC: A proposed simulation lasts six months. The supplied immunity study follows participants for only four weeks.
+
+This is an unmapped, incomplete source vignette. The JSON context retains required-field gaps. No answer or model output is provided.
+
+**Provenance:** Author-requested extension, REV-009, catalogue 1.1.0; definitions require domain review. Not transcribed from the archival workbook.
+
+Background references, inspected 2026-09-28; not validation of this task:
+- [CDC SEIR outbreak modeling](https://www.cdc.gov/cfa-behind-the-model/php/data-research/local-measles-disease-modeling/index.html)
+
+<a id="ec10"></a>
+
+## EC10
+
+**Question:** Does the evidence support reporting delays as an explanation for the recent difference between observed and predicted case counts?
+
+**Decision unit:** One forecast departure × reporting-delay explanation
+
+| Option ID | Label | Proposed operational definition |
+|---|---|---|
+| 1 | Supported as a sufficient explanation | Supplied analyses and contextual evidence support the named factor accounting for the full observed difference under prespecified sufficiency criteria. |
+| 2 | Supported as a partial explanation only | Evidence supports a contribution, but also establishes that the named factor alone is insufficient under those criteria. |
+| 3 | Evidence argues against this explanation | Adequate evidence is inconsistent with the named factor explaining the observed difference. |
+| 4 | Conflicting evidence | Comparable evidence supports incompatible conclusions about the named factor. |
+| 5 | Insufficient evidence | Decisive information is missing, inaccessible or too incomplete to assign another category. This is not a negative finding. |
+
+**Accepted inputs:** Observed and predicted counts, prediction intervals, reporting-delay distributions, backfill and surveillance notes.
+
+**Minimum context:** Observed and predicted counts, prediction intervals, reporting-delay distributions, backfill and surveillance notes.
+
+| Required field | Supplier |
+|---|---|
+| `observed_and_predicted_counts` | Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping |
+| `prediction_intervals` | Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping |
+| `reporting_delay_summary` | Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping |
+| `backfill` | Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping |
+| `surveillance_notes` | Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping |
+| `sufficiency_criteria` | Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping |
+| `source_ids` | Local provenance index |
+
+**Upstream preparation:** Prepare identifiers, timing, QC and relevant quantitative or specialist findings. Use validated nowcasting and reporting-delay corrections when they fully explain the difference.
+
+**Optional cached extraction:** Extract reusable source-linked facts and qualifying passages; do not supply a verdict for the same question.
+
+**Reuse key:** One forecast departure × reporting-delay explanation × source version × protocol version
+
+**Remaining semantic work:** Resolve contextual applicability or narrative relations not already settled by trusted structured fields.
+
+**Bypass Jev/Laya:** Use validated nowcasting and reporting-delay corrections when they fully explain the difference.
+
+**Abstain or escalate:** Hold for missing decisive context, out-of-domain input or low reliability; a substantive Insufficient evidence label is distinct from system abstention.
+
+**Combine outside the model:** Combine separately evaluated criteria with a prespecified application rule; preserve conflicts and missingness. Do not multiply unrelated answer probabilities.
+
+**Future routing:** Supported/applicable findings → retain for the next research step; contrary/nonqualifying findings → record the reason, without automatic irreversible exclusion; mixed/conflicting/insufficient/invalid → retrieve evidence or expert review.
+
+**Interpretation limit:** A reporting-delay explanation does not establish absence of a transmission change or fix the epidemic model.
+
+**Proposed validation:** Retrospective rolling-origin evaluation using archived data vintages; assess explanation labels and downstream forecast revisions.
+
+<a id="ec10-synthetic-example"></a>
+
+### EC10 synthetic example
+
+SYNTHETIC: Recent reported counts fall below a forecast interval. Reporting logs mention a laboratory backlog; the subsequent backfill is unavailable.
+
+This is an unmapped, incomplete source vignette. The JSON context retains required-field gaps. No answer or model output is provided.
+
+**Provenance:** Author-requested extension, REV-009, catalogue 1.1.0; definitions require domain review. Not transcribed from the archival workbook.
+
+Background references, inspected 2026-09-28; not validation of this task:
+- [CDC SEIR outbreak modeling](https://www.cdc.gov/cfa-behind-the-model/php/data-research/local-measles-disease-modeling/index.html)
+- [WHO event-based surveillance](https://www.who.int/publications/i/item/WHO-HSE-GCR-LYO-2014.4)
+
+<a id="ec11"></a>
+
+## EC11
+
+**Question:** Does this report document a qualifying exposure relevant to [syndrome] that was known by the forecast cutoff?
+
+**Decision unit:** One exposure report × syndrome definition × forecast cutoff
+
+| Option ID | Label | Proposed operational definition |
+|---|---|---|
+| 1 | Qualifying exposure documented | An actual qualifying exposure occurred and its report was available by the forecast cutoff. |
+| 2 | Related but nonqualifying exposure | An actual exposure is described but fails the supplied relevance, event-time or information-availability criteria. |
+| 3 | Qualifying exposure explicitly denied | The relevant exposure is explicitly denied in the reviewed report. |
+| 4 | Hypothetical exposure only | Only a possible future or hypothetical exposure is described. |
+| 5 | Insufficient evidence | Decisive information is missing, inaccessible or too incomplete to assign another category. This is not a negative finding. |
+
+**Accepted inputs:** Exposure definition, original report, event date, availability date and forecast cutoff.
+
+**Minimum context:** Exposure definition, original report, event date, availability date and forecast cutoff.
+
+| Required field | Supplier |
+|---|---|
+| `exposure_definition` | Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping |
+| `original_report` | Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping |
+| `event_date` | Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping |
+| `report_availability_date` | Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping |
+| `forecast_cutoff` | Researcher-provided protocol, source-linked record or specialist output; record the actual supplier during mapping |
+| `source_ids` | Local provenance index |
+
+**Upstream preparation:** Prepare identifiers, timing, QC and relevant quantitative or specialist findings. Use reliable exposure tags and timestamps directly when qualification is unambiguous.
+
+**Optional cached extraction:** Extract reusable source-linked facts and qualifying passages; do not supply a verdict for the same question.
+
+**Reuse key:** One exposure report × syndrome definition × forecast cutoff × source version × protocol version
+
+**Remaining semantic work:** Resolve contextual applicability or narrative relations not already settled by trusted structured fields.
+
+**Bypass Jev/Laya:** Use reliable exposure tags and timestamps directly when qualification is unambiguous.
+
+**Abstain or escalate:** Hold for missing decisive context, out-of-domain input or low reliability; a substantive Insufficient evidence label is distinct from system abstention.
+
+**Combine outside the model:** Combine separately evaluated criteria with a prespecified application rule; preserve conflicts and missingness. Do not multiply unrelated answer probabilities.
+
+**Future routing:** Supported/applicable findings → retain for the next research step; contrary/nonqualifying findings → record the reason, without automatic irreversible exclusion; mixed/conflicting/insufficient/invalid → retrieve evidence or expert review.
+
+**Interpretation limit:** The label is a candidate forecasting input, not proof of predictive gain. Event time alone does not establish information availability.
+
+**Proposed validation:** Adjudicated narratives and timestamp audit; assess incremental forecast performance with temporal holdouts.
+
+<a id="ec11-synthetic-example"></a>
+
+### EC11 synthetic example
+
+SYNTHETIC: An exposure occurred on day 1 but was first reported on day 8. The forecast cutoff is day 5.
+
+This is an unmapped, incomplete source vignette. The JSON context retains required-field gaps. No answer or model output is provided.
+
+**Provenance:** Author-requested extension, REV-009, catalogue 1.1.0; definitions require domain review. Not transcribed from the archival workbook.
+
+Background references, inspected 2026-09-28; not validation of this task:
+- [WHO event-based surveillance](https://www.who.int/publications/i/item/WHO-HSE-GCR-LYO-2014.4)
+- [scikit-learn data leakage and feature selection](https://scikit-learn.org/stable/common_pitfalls.html)
