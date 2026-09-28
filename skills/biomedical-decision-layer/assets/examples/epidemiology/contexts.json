@@ -1,0 +1,224 @@
+{
+  "synthetic": true,
+  "execution_status": "not_run",
+  "cases": {
+    "sufficient_for_bounded_question": [
+      {
+        "synthetic": true,
+        "question_id": "EC01",
+        "question_version": "1.0.0",
+        "candidate_id": "renal-X1",
+        "context_version": "1.0.0",
+        "study_context": {
+          "intended_use": "classify explicit record statements for research",
+          "episode": "X1",
+          "index_person": "fictional participant"
+        },
+        "computed_results": [],
+        "evidence_items": [
+          {
+            "evidence_id": "EC-E1",
+            "source_id": "synthetic-ec",
+            "source_location": "source-dossier.md, E1",
+            "extraction_method": "manual factual extraction from synthetic source",
+            "excerpt": "Renal disease had been under follow-up for years. During this admission, renal function deteriorated and dialysis was started.",
+            "experiment_id": "episode-X1"
+          }
+        ],
+        "context_fields": {
+          "condition": "renal disease",
+          "original_passage": "Renal disease had been under follow-up for years. During this admission, renal function deteriorated and dialysis was started.",
+          "episode_start": "current admission",
+          "surrounding_sentences": "Both sentences supplied as one span.",
+          "rule_results": "Supplied rule summary: for years precedes current admission."
+        },
+        "missing_fields": [],
+        "preparation_status": "rule_bypass_proposed",
+        "token_audit": {
+          "status": "unverified",
+          "tokenizer_revision": null,
+          "packed_token_count": null,
+          "truncation": null
+        }
+      },
+      {
+        "synthetic": true,
+        "question_id": "EC04",
+        "question_version": "1.0.0",
+        "candidate_id": "diabetes-X1",
+        "context_version": "1.0.0",
+        "study_context": {
+          "intended_use": "classify explicit record statements for research",
+          "episode": "X1",
+          "index_person": "fictional participant"
+        },
+        "computed_results": [],
+        "evidence_items": [
+          {
+            "evidence_id": "EC-E2",
+            "source_id": "synthetic-ec",
+            "source_location": "source-dossier.md, E2",
+            "extraction_method": "manual factual extraction from synthetic source",
+            "excerpt": "The participant lives with her mother, who has diabetes. The participant reports that her own screening was normal.",
+            "experiment_id": "episode-X1"
+          }
+        ],
+        "context_fields": {
+          "target_mention": "diabetes",
+          "passage": "The participant lives with her mother, who has diabetes. The participant reports that her own screening was normal.",
+          "role_map": {
+            "participant": "index person",
+            "mother": "another person"
+          },
+          "surrounding_sentences": "Both sentences supplied as one span.",
+          "rule_experiencer": "mother, from supplied role-parser summary"
+        },
+        "missing_fields": [],
+        "preparation_status": "rule_bypass_proposed",
+        "token_audit": {
+          "status": "unverified",
+          "tokenizer_revision": null,
+          "packed_token_count": null,
+          "truncation": null
+        }
+      },
+      {
+        "synthetic": true,
+        "question_id": "EC05",
+        "question_version": "1.0.0",
+        "candidate_id": "pneumonia-X1-discharge",
+        "context_version": "1.0.0",
+        "study_context": {
+          "intended_use": "classify explicit record statements for research",
+          "episode": "X1",
+          "index_person": "fictional participant"
+        },
+        "computed_results": [],
+        "evidence_items": [
+          {
+            "evidence_id": "EC-E3",
+            "source_id": "synthetic-ec",
+            "source_location": "source-dossier.md, E3",
+            "extraction_method": "manual factual extraction from synthetic source",
+            "excerpt": "Admission: possible pneumonia. Discharge: pneumonia explicitly ruled out.",
+            "experiment_id": "episode-X1"
+          }
+        ],
+        "context_fields": {
+          "condition": "pneumonia",
+          "relevant_time": "discharge",
+          "ordered_passages": [
+            "Admission: possible pneumonia.",
+            "Discharge: pneumonia explicitly ruled out."
+          ],
+          "status_definitions": "Current documentation status at discharge; historical suspicion is not current confirmation.",
+          "rule_results": "Supplied status parser: possible at admission; ruled out at discharge."
+        },
+        "missing_fields": [],
+        "preparation_status": "rule_bypass_proposed",
+        "token_audit": {
+          "status": "unverified",
+          "tokenizer_revision": null,
+          "packed_token_count": null,
+          "truncation": null
+        }
+      }
+    ],
+    "missing_evidence": [
+      {
+        "synthetic": true,
+        "question_id": "EC01",
+        "question_version": "1.0.0",
+        "candidate_id": "renal-X1",
+        "context_version": "1.0.0-missing",
+        "study_context": {
+          "intended_use": "research timing classification",
+          "episode": null,
+          "index_person": "fictional participant"
+        },
+        "computed_results": [],
+        "evidence_items": [
+          {
+            "evidence_id": "epidemiology-missing",
+            "source_id": "synthetic-epidemiology",
+            "source_location": "source-dossier.md, Missing-source variant",
+            "extraction_method": "manual factual extraction from synthetic source",
+            "excerpt": "Renal function deteriorated and dialysis was started.",
+            "experiment_id": "missing-variant"
+          }
+        ],
+        "context_fields": {
+          "condition": "renal disease",
+          "original_passage": "Renal function deteriorated and dialysis was started.",
+          "episode_start": null,
+          "surrounding_sentences": null,
+          "rule_results": null
+        },
+        "missing_fields": [
+          "episode_start",
+          "surrounding_sentences",
+          "rule_results"
+        ],
+        "preparation_status": "blocked_missing_evidence",
+        "token_audit": {
+          "status": "unverified",
+          "tokenizer_revision": null,
+          "packed_token_count": null,
+          "truncation": null
+        }
+      }
+    ],
+    "conflicting_evidence": [
+      {
+        "synthetic": true,
+        "question_id": "EC05",
+        "question_version": "1.0.0",
+        "candidate_id": "pneumonia-X1-discharge",
+        "context_version": "1.0.0-conflict",
+        "study_context": {
+          "intended_use": "classify explicit record statements for research",
+          "episode": "X1",
+          "index_person": "fictional participant"
+        },
+        "computed_results": [],
+        "evidence_items": [
+          {
+            "evidence_id": "EC-E3",
+            "source_id": "synthetic-ec",
+            "source_location": "source-dossier.md, E3",
+            "extraction_method": "manual factual extraction from synthetic source",
+            "excerpt": "Admission: possible pneumonia. Discharge: pneumonia explicitly ruled out.",
+            "experiment_id": "episode-X1"
+          },
+          {
+            "evidence_id": "epidemiology-conflict",
+            "source_id": "synthetic-epidemiology",
+            "source_location": "source-dossier.md, conflicting record",
+            "extraction_method": "manual factual extraction from synthetic source",
+            "excerpt": "At the same discharge time, an addendum says pneumonia confirmed; neither record supersedes the other.",
+            "experiment_id": "episode-X1"
+          }
+        ],
+        "context_fields": {
+          "condition": "pneumonia",
+          "relevant_time": "discharge",
+          "ordered_passages": [
+            "Admission: possible pneumonia.",
+            "Discharge: pneumonia explicitly ruled out.",
+            "At the same discharge time, an addendum says pneumonia confirmed; neither record supersedes the other."
+          ],
+          "status_definitions": "Current documentation status at discharge; historical suspicion is not current confirmation.",
+          "rule_results": "Two conflicting discharge statements; source resolution required."
+        },
+        "missing_fields": [],
+        "preparation_status": "review_conflicting_evidence",
+        "token_audit": {
+          "status": "unverified",
+          "tokenizer_revision": null,
+          "packed_token_count": null,
+          "truncation": null
+        }
+      }
+    ]
+  }
+}

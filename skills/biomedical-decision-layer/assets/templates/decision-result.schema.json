@@ -1,0 +1,239 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "title": "decision-result repository envelope 1.0.0",
+  "required": [
+    "execution_status",
+    "question_id",
+    "question_version",
+    "candidate_id",
+    "context_version",
+    "context_hash",
+    "answer_option_id",
+    "probabilities",
+    "provider_confidence",
+    "calibrated_reliability",
+    "calibration_id",
+    "model_id",
+    "model_revision",
+    "runtime_version",
+    "executed_at",
+    "raw_response_location",
+    "context_evidence_ids",
+    "routing_action",
+    "routing_rule_version",
+    "error"
+  ],
+  "properties": {
+    "execution_status": {
+      "enum": [
+        "not_run",
+        "completed",
+        "failed"
+      ]
+    },
+    "question_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "question_version": {
+      "type": "string"
+    },
+    "candidate_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "context_version": {
+      "type": "string"
+    },
+    "context_hash": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "answer_option_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "probabilities": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1
+      }
+    },
+    "provider_confidence": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 1
+    },
+    "calibrated_reliability": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 1
+    },
+    "calibration_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "model_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "model_revision": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "runtime_version": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "executed_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "raw_response_location": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "context_evidence_ids": {
+      "type": "array"
+    },
+    "routing_action": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "routing_rule_version": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "error": {
+      "type": [
+        "object",
+        "null"
+      ]
+    }
+  },
+  "additionalProperties": true,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "execution_status": {
+            "const": "not_run"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "answer_option_id": {
+            "type": "null"
+          },
+          "probabilities": {
+            "type": "null"
+          },
+          "provider_confidence": {
+            "type": "null"
+          },
+          "calibrated_reliability": {
+            "type": "null"
+          },
+          "calibration_id": {
+            "type": "null"
+          },
+          "model_id": {
+            "type": "null"
+          },
+          "model_revision": {
+            "type": "null"
+          },
+          "runtime_version": {
+            "type": "null"
+          },
+          "executed_at": {
+            "type": "null"
+          },
+          "raw_response_location": {
+            "type": "null"
+          },
+          "routing_action": {
+            "type": "null"
+          },
+          "routing_rule_version": {
+            "type": "null"
+          },
+          "error": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "execution_status": {
+            "const": "completed"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "question_id": {
+            "type": "string"
+          },
+          "candidate_id": {
+            "type": "string"
+          },
+          "answer_option_id": {
+            "type": "string"
+          },
+          "probabilities": {
+            "type": "object"
+          },
+          "model_id": {
+            "type": "string"
+          },
+          "executed_at": {
+            "type": "string"
+          },
+          "raw_response_location": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  ]
+}

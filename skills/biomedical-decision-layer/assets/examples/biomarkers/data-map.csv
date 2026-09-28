@@ -1,0 +1,5 @@
+source_file,source_location,question_id,destination_fields,supplier,reuse_key
+source-dossier.md,Study plan,BM01,intended_use; panel_members; tissue,researcher protocol,study-plan-v1
+source-dossier.md,E1 — Role experiment X1,BM01,panel_roles; candidate_role_excerpts,cached factual extraction,gene-tissue-X1-v1
+source-dossier.md,Study plan; E2 — Matrix experiment X2,BM02,assay_id; target_matrix; reference_matrix; preparation; validation_excerpt; source_id,protocol plus source extraction,S1-X2-plasma-v1
+source-dossier.md,Study plan; E3 — Cohort study X3,BM03,target_contrast; intended_time; case_definition; comparator_excerpt; sampling_excerpt,study-level extraction,X3-cohort-v1

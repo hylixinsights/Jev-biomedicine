@@ -1,0 +1,43 @@
+{
+  "synthetic": false,
+  "example_id": null,
+  "catalogue_version": "1.0.0",
+  "question_id": null,
+  "question_version": "1.0.0",
+  "context_version": "1.0.0",
+  "context": null,
+  "task_definition": null,
+  "options": [],
+  "source_ids": [],
+  "dependence_groups": {
+    "study_id": null,
+    "patient_group_id": null,
+    "document_id": null,
+    "experiment_id": null
+  },
+  "split": null,
+  "split_policy_version": null,
+  "labels": {
+    "human_label": {
+      "option_id": null,
+      "author": null,
+      "method": null,
+      "date": null,
+      "review_status": "unreviewed"
+    },
+    "llm_suggested_label": {
+      "option_id": null,
+      "author": null,
+      "method": null,
+      "date": null,
+      "review_status": "unreviewed"
+    },
+    "expert_reviewed_label": {
+      "option_id": null,
+      "author": null,
+      "method": null,
+      "date": null,
+      "review_status": "unreviewed"
+    }
+  }
+}

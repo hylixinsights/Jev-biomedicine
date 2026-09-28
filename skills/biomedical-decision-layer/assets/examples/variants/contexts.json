@@ -1,0 +1,223 @@
+{
+  "synthetic": true,
+  "execution_status": "not_run",
+  "cases": {
+    "sufficient_for_bounded_question": [
+      {
+        "synthetic": true,
+        "question_id": "GV01",
+        "question_version": "1.0.0",
+        "candidate_id": "V_SYN_1-D_SYN",
+        "context_version": "1.0.0",
+        "study_context": {
+          "intended_use": "research prioritization for D_SYN",
+          "clinical_classification": "not performed"
+        },
+        "computed_results": [],
+        "evidence_items": [
+          {
+            "evidence_id": "GV-E1",
+            "source_id": "synthetic-gv",
+            "source_location": "source-dossier.md, E1",
+            "extraction_method": "manual factual extraction from synthetic source",
+            "excerpt": "D_SYN mechanism: increased channel activation. Reduced function concerns a different disorder.",
+            "experiment_id": "X1"
+          }
+        ],
+        "context_fields": {
+          "variant_id": "V_SYN_1",
+          "transcript_version": "T_SYN.1",
+          "proposed_effect": "predicted truncation",
+          "effect_evidence_type": "synthetic annotation prediction; functional effect not established",
+          "disease": "D_SYN",
+          "mechanism_excerpt": "D_SYN mechanism: increased channel activation. Reduced function concerns a different disorder."
+        },
+        "missing_fields": [],
+        "preparation_status": "ready_for_review",
+        "token_audit": {
+          "status": "unverified",
+          "tokenizer_revision": null,
+          "packed_token_count": null,
+          "truncation": null
+        }
+      },
+      {
+        "synthetic": true,
+        "question_id": "GV03",
+        "question_version": "1.0.0",
+        "candidate_id": "V_SYN_1-X2",
+        "context_version": "1.0.0",
+        "study_context": {
+          "intended_use": "research prioritization for D_SYN",
+          "clinical_classification": "not performed"
+        },
+        "computed_results": [],
+        "evidence_items": [
+          {
+            "evidence_id": "GV-E1",
+            "source_id": "synthetic-gv",
+            "source_location": "source-dossier.md, E1",
+            "extraction_method": "manual factual extraction from synthetic source",
+            "excerpt": "D_SYN mechanism: increased channel activation. Reduced function concerns a different disorder.",
+            "experiment_id": "X1"
+          },
+          {
+            "evidence_id": "GV-E2",
+            "source_id": "synthetic-gv",
+            "source_location": "source-dossier.md, E2",
+            "extraction_method": "manual factual extraction from synthetic source",
+            "excerpt": "V_SYN_1 in artificial T_SYN.1 cDNA reduces immunoblot abundance versus wild type; channel function not measured; no introns or endogenous expression assessment.",
+            "experiment_id": "X2"
+          }
+        ],
+        "context_fields": {
+          "disease_mechanism": "increased channel activation",
+          "tested_allele": "V_SYN_1",
+          "construct": "artificial T_SYN.1 cDNA",
+          "readout_definition": "immunoblot protein abundance",
+          "controls": "wild-type construct and loading controls",
+          "results_excerpt": "V_SYN_1 in artificial T_SYN.1 cDNA reduces immunoblot abundance versus wild type; channel function not measured; no introns or endogenous expression assessment."
+        },
+        "missing_fields": [],
+        "preparation_status": "ready_for_review",
+        "token_audit": {
+          "status": "unverified",
+          "tokenizer_revision": null,
+          "packed_token_count": null,
+          "truncation": null
+        }
+      },
+      {
+        "synthetic": true,
+        "question_id": "GV04",
+        "question_version": "1.0.0",
+        "candidate_id": "T_SYN.1-X2",
+        "context_version": "1.0.0",
+        "study_context": {
+          "intended_use": "research prioritization for D_SYN",
+          "clinical_classification": "not performed"
+        },
+        "computed_results": [],
+        "evidence_items": [
+          {
+            "evidence_id": "GV-E2",
+            "source_id": "synthetic-gv",
+            "source_location": "source-dossier.md, E2",
+            "extraction_method": "manual factual extraction from synthetic source",
+            "excerpt": "V_SYN_1 in artificial T_SYN.1 cDNA reduces immunoblot abundance versus wild type; channel function not measured; no introns or endogenous expression assessment.",
+            "experiment_id": "X2"
+          }
+        ],
+        "context_fields": {
+          "target_transcript": "T_SYN.1",
+          "exon_context": "relevant coding sequence in cDNA; no introns",
+          "construct_mapping": "artificial T_SYN.1 coding sequence",
+          "assay_system": "cDNA expression",
+          "endogenous_expression": {
+            "measurement_status": "not_measured"
+          },
+          "methods_excerpt": "V_SYN_1 in artificial T_SYN.1 cDNA reduces immunoblot abundance versus wild type; channel function not measured; no introns or endogenous expression assessment."
+        },
+        "missing_fields": [],
+        "preparation_status": "ready_for_review",
+        "token_audit": {
+          "status": "unverified",
+          "tokenizer_revision": null,
+          "packed_token_count": null,
+          "truncation": null
+        }
+      }
+    ],
+    "missing_evidence": [
+      {
+        "synthetic": true,
+        "question_id": "GV01",
+        "question_version": "1.0.0",
+        "candidate_id": "V_SYN_1-D_SYN",
+        "context_version": "1.0.0-missing",
+        "study_context": {
+          "intended_use": "research prioritization for D_SYN",
+          "clinical_classification": "not performed"
+        },
+        "computed_results": [],
+        "evidence_items": [
+          {
+            "evidence_id": "variants-missing",
+            "source_id": "synthetic-variants",
+            "source_location": "source-dossier.md, Missing-source variant",
+            "extraction_method": "manual factual extraction from synthetic source",
+            "excerpt": "Variant V_SYN_1 has a predicted truncation; transcript version and disease record are unavailable.",
+            "experiment_id": "missing-variant"
+          }
+        ],
+        "context_fields": {
+          "variant_id": "V_SYN_1",
+          "transcript_version": null,
+          "proposed_effect": "predicted truncation",
+          "effect_evidence_type": "synthetic annotation prediction; functional effect not established",
+          "disease": "D_SYN",
+          "mechanism_excerpt": null
+        },
+        "missing_fields": [
+          "transcript_version",
+          "mechanism_excerpt"
+        ],
+        "preparation_status": "blocked_missing_evidence",
+        "token_audit": {
+          "status": "unverified",
+          "tokenizer_revision": null,
+          "packed_token_count": null,
+          "truncation": null
+        }
+      }
+    ],
+    "conflicting_evidence": [
+      {
+        "synthetic": true,
+        "question_id": "GV01",
+        "question_version": "1.0.0",
+        "candidate_id": "V_SYN_1-D_SYN",
+        "context_version": "1.0.0-conflict",
+        "study_context": {
+          "intended_use": "research prioritization for D_SYN",
+          "clinical_classification": "not performed"
+        },
+        "computed_results": [],
+        "evidence_items": [
+          {
+            "evidence_id": "GV-E1",
+            "source_id": "synthetic-gv",
+            "source_location": "source-dossier.md, E1",
+            "extraction_method": "manual factual extraction from synthetic source",
+            "excerpt": "D_SYN mechanism: increased channel activation. Reduced function concerns a different disorder.",
+            "experiment_id": "X1"
+          },
+          {
+            "evidence_id": "variants-conflict",
+            "source_id": "synthetic-variants",
+            "source_location": "source-dossier.md, conflicting record",
+            "extraction_method": "manual factual extraction from synthetic source",
+            "excerpt": "X3 attributes the same D_SYN condition to reduced channel function in the same setting, conflicting with X1.",
+            "experiment_id": "X3"
+          }
+        ],
+        "context_fields": {
+          "variant_id": "V_SYN_1",
+          "transcript_version": "T_SYN.1",
+          "proposed_effect": "predicted truncation",
+          "effect_evidence_type": "synthetic annotation prediction; functional effect not established",
+          "disease": "D_SYN",
+          "mechanism_excerpt": "D_SYN mechanism: increased channel activation. Reduced function concerns a different disorder. X3 attributes the same D_SYN condition to reduced channel function in the same setting, conflicting with X1."
+        },
+        "missing_fields": [],
+        "preparation_status": "review_conflicting_evidence",
+        "token_audit": {
+          "status": "unverified",
+          "tokenizer_revision": null,
+          "packed_token_count": null,
+          "truncation": null
+        }
+      }
+    ]
+  }
+}

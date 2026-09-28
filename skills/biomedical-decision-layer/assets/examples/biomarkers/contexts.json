@@ -1,0 +1,232 @@
+{
+  "synthetic": true,
+  "execution_status": "not_run",
+  "cases": {
+    "sufficient_for_bounded_question": [
+      {
+        "synthetic": true,
+        "question_id": "BM01",
+        "question_version": "1.0.0",
+        "candidate_id": "C-panel-AB",
+        "context_version": "1.0.0",
+        "study_context": {
+          "intended_use": "severe versus mild inflammatory disease",
+          "tissue": "vascular endothelium for role evidence; blood for assay",
+          "specimen": "EDTA plasma",
+          "timing": "before treatment"
+        },
+        "computed_results": [],
+        "evidence_items": [
+          {
+            "evidence_id": "BM-E1",
+            "source_id": "synthetic-bm",
+            "source_location": "source-dossier.md, E1",
+            "extraction_method": "manual factual extraction from synthetic source",
+            "excerpt": "A/B: interferon response in endothelium; C perturbation changes endothelial permeability.",
+            "experiment_id": "X1"
+          }
+        ],
+        "context_fields": {
+          "intended_use": "severe versus mild inflammatory disease",
+          "panel_members": [
+            "A",
+            "B"
+          ],
+          "panel_roles": [
+            "interferon-response program in endothelium"
+          ],
+          "candidate_role_excerpts": [
+            "A/B: interferon response in endothelium; C perturbation changes endothelial permeability."
+          ],
+          "tissue": "vascular endothelium",
+          "source_ids": [
+            "synthetic-bm"
+          ]
+        },
+        "missing_fields": [],
+        "preparation_status": "ready_for_review",
+        "token_audit": {
+          "status": "unverified",
+          "tokenizer_revision": null,
+          "packed_token_count": null,
+          "truncation": null
+        }
+      },
+      {
+        "synthetic": true,
+        "question_id": "BM02",
+        "question_version": "1.0.0",
+        "candidate_id": "S1-EDTA-plasma",
+        "context_version": "1.0.0",
+        "study_context": {
+          "intended_use": "severe versus mild inflammatory disease",
+          "tissue": "vascular endothelium for role evidence; blood for assay",
+          "specimen": "EDTA plasma",
+          "timing": "before treatment"
+        },
+        "computed_results": [],
+        "evidence_items": [
+          {
+            "evidence_id": "BM-E2",
+            "source_id": "synthetic-bm",
+            "source_location": "source-dossier.md, E2",
+            "extraction_method": "manual factual extraction from synthetic source",
+            "excerpt": "S1 measures endogenous C in EDTA plasma under SOP P1; dilution and interference tested.",
+            "experiment_id": "X2"
+          }
+        ],
+        "context_fields": {
+          "assay_id": "S1",
+          "target_matrix": "EDTA plasma",
+          "reference_matrix": "EDTA plasma",
+          "preparation": "SOP P1 before treatment",
+          "validation_excerpt": "S1 measures endogenous C in EDTA plasma under SOP P1; dilution and interference tested.",
+          "source_id": "synthetic-bm"
+        },
+        "missing_fields": [],
+        "preparation_status": "ready_for_review",
+        "token_audit": {
+          "status": "unverified",
+          "tokenizer_revision": null,
+          "packed_token_count": null,
+          "truncation": null
+        }
+      },
+      {
+        "synthetic": true,
+        "question_id": "BM03",
+        "question_version": "1.0.0",
+        "candidate_id": "X3-intended-contrast",
+        "context_version": "1.0.0",
+        "study_context": {
+          "intended_use": "severe versus mild inflammatory disease",
+          "tissue": "vascular endothelium for role evidence; blood for assay",
+          "specimen": "EDTA plasma",
+          "timing": "before treatment"
+        },
+        "computed_results": [],
+        "evidence_items": [
+          {
+            "evidence_id": "BM-E3",
+            "source_id": "synthetic-bm",
+            "source_location": "source-dossier.md, E3",
+            "extraction_method": "manual factual extraction from synthetic source",
+            "excerpt": "Treatment-naive adults; severe versus mild under the same prespecified definitions and enrollment criteria.",
+            "experiment_id": "X3"
+          }
+        ],
+        "context_fields": {
+          "target_contrast": "severe versus mild inflammatory disease",
+          "intended_time": "before treatment",
+          "case_definition": "prespecified inflammatory-disease and severity definitions, shared by source and intended study",
+          "comparator_excerpt": "Mild cases under the same enrollment criteria.",
+          "sampling_excerpt": "Treatment-naive adults sampled before therapy."
+        },
+        "missing_fields": [],
+        "preparation_status": "ready_for_review",
+        "token_audit": {
+          "status": "unverified",
+          "tokenizer_revision": null,
+          "packed_token_count": null,
+          "truncation": null
+        }
+      }
+    ],
+    "missing_evidence": [
+      {
+        "synthetic": true,
+        "question_id": "BM02",
+        "question_version": "1.0.0",
+        "candidate_id": "S1-EDTA-plasma",
+        "context_version": "1.0.0-missing",
+        "study_context": {
+          "intended_use": "severe versus mild inflammatory disease",
+          "tissue": "vascular endothelium for role evidence; blood for assay",
+          "specimen": "EDTA plasma",
+          "timing": "before treatment"
+        },
+        "computed_results": [],
+        "evidence_items": [
+          {
+            "evidence_id": "biomarkers-missing",
+            "source_id": "synthetic-biomarkers",
+            "source_location": "source-dossier.md, Missing-source variant",
+            "extraction_method": "manual factual extraction from synthetic source",
+            "excerpt": "Only the heading blood samples is accessible.",
+            "experiment_id": "missing-variant"
+          }
+        ],
+        "context_fields": {
+          "assay_id": "S1",
+          "target_matrix": "EDTA plasma",
+          "reference_matrix": null,
+          "preparation": null,
+          "validation_excerpt": null,
+          "source_id": "synthetic-bm"
+        },
+        "missing_fields": [
+          "reference_matrix",
+          "preparation",
+          "validation_excerpt"
+        ],
+        "preparation_status": "blocked_missing_evidence",
+        "token_audit": {
+          "status": "unverified",
+          "tokenizer_revision": null,
+          "packed_token_count": null,
+          "truncation": null
+        }
+      }
+    ],
+    "conflicting_evidence": [
+      {
+        "synthetic": true,
+        "question_id": "BM02",
+        "question_version": "1.0.0",
+        "candidate_id": "S1-EDTA-plasma",
+        "context_version": "1.0.0-conflict",
+        "study_context": {
+          "intended_use": "severe versus mild inflammatory disease",
+          "tissue": "vascular endothelium for role evidence; blood for assay",
+          "specimen": "EDTA plasma",
+          "timing": "before treatment"
+        },
+        "computed_results": [],
+        "evidence_items": [
+          {
+            "evidence_id": "BM-E2",
+            "source_id": "synthetic-bm",
+            "source_location": "source-dossier.md, E2",
+            "extraction_method": "manual factual extraction from synthetic source",
+            "excerpt": "S1 measures endogenous C in EDTA plasma under SOP P1; dilution and interference tested.",
+            "experiment_id": "X2"
+          },
+          {
+            "evidence_id": "biomarkers-conflict",
+            "source_id": "synthetic-biomarkers",
+            "source_location": "source-dossier.md, conflicting record",
+            "extraction_method": "manual factual extraction from synthetic source",
+            "excerpt": "X4: Same S1 assay, EDTA plasma and SOP P1; matrix interference prevents consistent endogenous C measurement.",
+            "experiment_id": "X4"
+          }
+        ],
+        "context_fields": {
+          "assay_id": "S1",
+          "target_matrix": "EDTA plasma",
+          "reference_matrix": "EDTA plasma",
+          "preparation": "SOP P1 before treatment",
+          "validation_excerpt": "S1 measures endogenous C in EDTA plasma under SOP P1; dilution and interference tested. X4: Same S1 assay, EDTA plasma and SOP P1; matrix interference prevents consistent endogenous C measurement.",
+          "source_id": "synthetic-bm"
+        },
+        "missing_fields": [],
+        "preparation_status": "review_conflicting_evidence",
+        "token_audit": {
+          "status": "unverified",
+          "tokenizer_revision": null,
+          "packed_token_count": null,
+          "truncation": null
+        }
+      }
+    ]
+  }
+}

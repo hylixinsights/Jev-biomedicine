@@ -1,0 +1,523 @@
+{
+  "Payload_schema": {
+    "header_row": 5,
+    "rows": [
+      {
+        "Section": "Input",
+        "Field": "task_id / question_version",
+        "Data type": "string",
+        "Who supplies it": "Application code",
+        "Example": "BM02 / v1.0",
+        "Purpose / validation rule": "Stable linkage to question, option definitions and evaluation set; changes require versioning."
+      },
+      {
+        "Section": "Input",
+        "Field": "candidate.id / unit",
+        "Data type": "string + enum",
+        "Who supplies it": "Application code",
+        "Example": "assay_A__EDTA_plasma / assay_matrix",
+        "Purpose / validation rule": "Define exactly one candidate, evidence item or comparison; do not mix unrelated entities in a state."
+      },
+      {
+        "Section": "Input",
+        "Field": "intended_use / decision_target",
+        "Data type": "object",
+        "Who supplies it": "Expert-approved protocol + scripts",
+        "Example": "{\"contrast\":\"active_vs_latent_TB\",\"specimen\":\"EDTA_plasma\",\"testing_time\":\"before_treatment\"}",
+        "Purpose / validation rule": "Fix the biological question and target setting before asking about applicability."
+      },
+      {
+        "Section": "Input",
+        "Field": "analysis_context",
+        "Data type": "object",
+        "Who supplies it": "Scripts / study metadata",
+        "Example": "{\"tissue\":\"blood\",\"condition\":\"pretreatment\",\"timepoint\":\"baseline\",\"species\":\"human\"}",
+        "Purpose / validation rule": "Only include context that can change the answer. Missing fields remain null/unknown."
+      },
+      {
+        "Section": "Input",
+        "Field": "measurements[]",
+        "Data type": "array of typed results",
+        "Who supplies it": "Statistical/specialist pipeline",
+        "Example": "{\"effect\":0.7,\"uncertainty\":\"CI supplied separately\",\"measured_entity\":\"endogenous_A\",\"synthetic\":true}",
+        "Purpose / validation rule": "Supply computed effects, units, uncertainty and QC; never ask the model to calculate these."
+      },
+      {
+        "Section": "Input",
+        "Field": "evidence[].excerpt",
+        "Data type": "verbatim text span",
+        "Who supplies it": "Scripts; cached LLM extraction if needed",
+        "Example": "SYNTHETIC E1: Recovery was assessed after adding recombinant A to buffer.",
+        "Purpose / validation rule": "Prefer a short original methods/result passage to an LLM interpretation. Keep qualifications and negative results."
+      },
+      {
+        "Section": "Input",
+        "Field": "evidence[].source_id / locator",
+        "Data type": "string + location",
+        "Who supplies it": "Retrieval/extraction code",
+        "Example": "{\"source_id\":\"E1\",\"document_version\":\"v2\",\"locator\":\"Methods > Matrix validation, paragraph 2\"}",
+        "Purpose / validation rule": "Retain a source URL/DOI/accession plus page/section/row/span. Input provenance is not proof of what the model relied on."
+      },
+      {
+        "Section": "Input",
+        "Field": "evidence[].observation_type",
+        "Data type": "enum or null",
+        "Who supplies it": "Structured source / extraction with provenance",
+        "Example": "measured_result | author_interpretation | prediction | protocol_detail | unknown",
+        "Purpose / validation rule": "Do not silently convert an author's mechanistic interpretation into an observed result."
+      },
+      {
+        "Section": "Input",
+        "Field": "evidence[].missingness",
+        "Data type": "enum",
+        "Who supplies it": "Application code",
+        "Example": "observed | not_measured | not_reported | inaccessible | extraction_failed | truncated",
+        "Purpose / validation rule": "A null result differs from an unmeasured endpoint, a nondetect and missing text."
+      },
+      {
+        "Section": "Input",
+        "Field": "retrieval_coverage",
+        "Data type": "object",
+        "Who supplies it": "Retrieval code",
+        "Example": "{\"corpus\":\"specified_corpus\",\"as_of\":\"2026-09-28\",\"full_text_access\":\"partial\",\"query_version\":\"q3\"}",
+        "Purpose / validation rule": "Needed for evidence-gap questions; never translate incomplete retrieval into literature-wide novelty."
+      },
+      {
+        "Section": "Input",
+        "Field": "provenance / version",
+        "Data type": "object",
+        "Who supplies it": "Application code",
+        "Example": "{\"pipeline_version\":\"p1\",\"extractor\":\"script_or_model_id\",\"reference_release\":\"r1\",\"context_hash\":\"...\"}",
+        "Purpose / validation rule": "Track algorithm, model/checkpoint, prompt, source and data versions for reproducibility."
+      },
+      {
+        "Section": "Input",
+        "Field": "image_or_spectrum_descriptor",
+        "Data type": "object + uncertainty",
+        "Who supplies it": "Validated specialist or vision pipeline",
+        "Example": "{\"region\":\"R1\",\"description\":\"stroma only\",\"mask_version\":\"m2\",\"descriptor_status\":\"needs_validation\"}",
+        "Purpose / validation rule": "Use numerical summaries or validated descriptions. No direct pixel, FCS-event or raw spectral reading by Jev/Laya is assumed."
+      },
+      {
+        "Section": "Input",
+        "Field": "selected_set_snapshot",
+        "Data type": "array + version",
+        "Who supplies it": "Application code",
+        "Example": "{\"version\":\"roi_set_04\",\"represented_features\":[\"tumor_core\"]}",
+        "Purpose / validation rule": "For panel/region comparisons, all parallel questions use the same fixed reference set. Update between rounds, not within a batch."
+      },
+      {
+        "Section": "Instruction",
+        "Field": "common_instruction",
+        "Data type": "fixed text",
+        "Who supplies it": "Expert-approved task design",
+        "Example": "Use only supplied evidence; choose one option; abstain when decisive facts are missing.",
+        "Purpose / validation rule": "Include source-as-data handling and the mixed/conflict versus missing-evidence distinction described in Start_here."
+      },
+      {
+        "Section": "Instruction",
+        "Field": "questions[task_id].type",
+        "Data type": "enum",
+        "Who supplies it": "API adapter",
+        "Example": "choice",
+        "Purpose / validation rule": "Conceptual specification: map to the installed Jev/Laya API. No assumption that their outputs or confidence fields are identical."
+      },
+      {
+        "Section": "Instruction",
+        "Field": "questions[task_id].instructions",
+        "Data type": "string",
+        "Who supplies it": "Question catalogue",
+        "Example": "Does the cited assay-validation experiment support use in the proposed specimen matrix?",
+        "Purpose / validation rule": "Ask one bounded question. Do not include the expected label, downstream decision or an upstream LLM verdict."
+      },
+      {
+        "Section": "Instruction",
+        "Field": "questions[task_id].criteria",
+        "Data type": "key → description",
+        "Who supplies it": "Question catalogue + adapter",
+        "Example": "A: Direct matrix evidence; B: Related matrix requiring validation; C: Different matrix only; D: Conflicting evidence; U: Insufficient evidence",
+        "Purpose / validation rule": "Use concise, distinguishable options with stable keys; test paraphrases and option order."
+      },
+      {
+        "Section": "Output",
+        "Field": "answer.choice / option_key",
+        "Data type": "enum",
+        "Who supplies it": "Jev/Laya, normalized by adapter",
+        "Example": "U",
+        "Purpose / validation rule": "Log an actual model output only after execution. No model predictions are supplied in this workbook."
+      },
+      {
+        "Section": "Output",
+        "Field": "answer.probabilities",
+        "Data type": "mapping of option to value",
+        "Who supplies it": "Model + application validation",
+        "Example": "Not populated — the proposed questions have not been run.",
+        "Purpose / validation rule": "Check schema, bounds and normalization as applicable; preserve the raw distribution before any calibration."
+      },
+      {
+        "Section": "Output",
+        "Field": "provider_confidence",
+        "Data type": "provider-defined value",
+        "Who supplies it": "Model adapter",
+        "Example": "Not populated",
+        "Purpose / validation rule": "Keep distinct from maximum class probability and from task-specific calibrated correctness."
+      },
+      {
+        "Section": "Output",
+        "Field": "calibrated_reliability / calibration_id",
+        "Data type": "value + version",
+        "Who supplies it": "Held-out calibration pipeline",
+        "Example": "Not populated — requires task-specific labels.",
+        "Purpose / validation rule": "Do not attach a universal 0.8/0.9 threshold or assume vendor-reported calibration transfers."
+      },
+      {
+        "Section": "Output",
+        "Field": "context_evidence_ids",
+        "Data type": "array",
+        "Who supplies it": "Application code",
+        "Example": "[\"E1\",\"E2\"]",
+        "Purpose / validation rule": "These are input provenance links. They are not automatically model-selected citations or an explanation."
+      },
+      {
+        "Section": "Routing",
+        "Field": "next_action / rule_version",
+        "Data type": "enum + version",
+        "Who supplies it": "Deterministic application code",
+        "Example": "retain | review | retrieve_more | technical_QC | lower_priority",
+        "Purpose / validation rule": "Apply expert-approved rules to independent answers; do not multiply correlated probabilities as independent evidence."
+      },
+      {
+        "Section": "Routing",
+        "Field": "human_review / final_decision",
+        "Data type": "record",
+        "Who supplies it": "Expert",
+        "Example": "Pending expert review",
+        "Purpose / validation rule": "Final interpretation, experimental design, clinical decisions and diagnostic gating remain with qualified humans."
+      },
+      {
+        "Section": "Audit",
+        "Field": "token_count / truncation / timings / costs",
+        "Data type": "typed measurements",
+        "Who supplies it": "Tokenizer + runtime instrumentation",
+        "Example": "Not populated — measure during the pilot.",
+        "Purpose / validation rule": "Count actual model input including questions/options. Record retrieval, extraction, GPU/CPU, model calls and expert time."
+      }
+    ]
+  },
+  "Validation": {
+    "header_row": 5,
+    "rows": [
+      {
+        "ID": "V01",
+        "Evaluation component": "Scope and label definitions",
+        "Proposed test": "Define the intended use, unit, options, mixed/conflicting precedence and missing-evidence policy with domain experts.",
+        "What to measure": "Inter-rater agreement; disagreements requiring revised definitions.",
+        "Failure to prevent": "No downstream model result available to labelers.",
+        "Scope": "All domains",
+        "Status": "Proposed — not run"
+      },
+      {
+        "ID": "V02",
+        "Evaluation component": "Rule-first baseline",
+        "Proposed test": "Compare the proposed layer against existing rules, ontology matching, specialist software and a compact supervised classifier where appropriate.",
+        "What to measure": "Per-class precision/recall; throughput; end-to-end cost.",
+        "Failure to prevent": "Remove questions already solved by structured fields from the Jev/Laya workload.",
+        "Scope": "All domains",
+        "Status": "Proposed — not run"
+      },
+      {
+        "ID": "V03",
+        "Evaluation component": "Context preparation ablation",
+        "Proposed test": "Compare original retrieved spans with cached LLM-extracted facts, holding the question and candidate set fixed.",
+        "What to measure": "Extraction errors; missing decisive facts; decision accuracy; preparation cost.",
+        "Failure to prevent": "Do not give Jev/Laya an upstream LLM answer to the same question.",
+        "Scope": "All domains",
+        "Status": "Proposed — not run"
+      },
+      {
+        "ID": "V04",
+        "Evaluation component": "Human reference labels",
+        "Proposed test": "Use independently labeled real task cases, with expert adjudication; retain difficult and rare categories.",
+        "What to measure": "Agreement; class support; adjudicated error types.",
+        "Failure to prevent": "LLM-generated labels may assist training but are not an independent gold standard.",
+        "Scope": "All domains",
+        "Status": "Proposed — not run"
+      },
+      {
+        "ID": "V05",
+        "Evaluation component": "Leakage-resistant splitting",
+        "Proposed test": "Split at the biological/source dependence unit: patient, family, donor, slide, study or locus as applicable.",
+        "What to measure": "Performance on unseen sources, cohorts and institutions.",
+        "Failure to prevent": "Keep reused excerpts, candidate-panel relatives and duplicate experiments in one split.",
+        "Scope": "All domains",
+        "Status": "Proposed — not run"
+      },
+      {
+        "ID": "V06",
+        "Evaluation component": "Model-specific training and calibration",
+        "Proposed test": "Evaluate pinned Jev and Laya versions separately. Fit any task adaptation and calibration only on development/calibration data.",
+        "What to measure": "Macro-F1; class recall; Brier score; reliability plots; calibration by question/domain.",
+        "Failure to prevent": "Keep a final held-out test set. Laya's model card warns about zero-shot limits and overconfidence; no biomedical transfer is assumed.",
+        "Scope": "S01–S04; all domains",
+        "Status": "Proposed — not run"
+      },
+      {
+        "ID": "V07",
+        "Evaluation component": "Selective prediction",
+        "Proposed test": "Choose routing thresholds from the accepted error rate for each task, not an arbitrary global confidence cut-off.",
+        "What to measure": "Risk–coverage curve; retained-candidate recall; review workload.",
+        "Failure to prevent": "Always route missing context and out-of-domain inputs independently of reported confidence.",
+        "Scope": "All domains",
+        "Status": "Proposed — not run"
+      },
+      {
+        "ID": "V08",
+        "Evaluation component": "Retrieval and extraction quality",
+        "Proposed test": "Audit retrieved methods/results, entity identity, supplementary data, negative results and source access.",
+        "What to measure": "Recall of decisive evidence; source-link accuracy; unsupported extraction rate.",
+        "Failure to prevent": "Do not score missing retrieved evidence as a biological negative or proof of novelty.",
+        "Scope": "Evidence-based questions",
+        "Status": "Proposed — not run"
+      },
+      {
+        "ID": "V09",
+        "Evaluation component": "Counterfactual context tests",
+        "Proposed test": "Change one relevant fact: specimen, transcript, comparator, temporal anchor, marker condition or assay format.",
+        "What to measure": "Expected label-change rate and irrelevant-change stability.",
+        "Failure to prevent": "Synthetic tests check sensitivity, not real-world biomedical performance.",
+        "Scope": "All domains",
+        "Status": "Proposed — not run"
+      },
+      {
+        "ID": "V10",
+        "Evaluation component": "Question and option stability",
+        "Proposed test": "Vary option order and equivalent wording; test mixed, contradictory and insufficient cases.",
+        "What to measure": "Label/probability stability and systematic option bias.",
+        "Failure to prevent": "Short option sets must still be distinguishable; inspect tokenized input, not just character count.",
+        "Scope": "All domains",
+        "Status": "Proposed — not run"
+      },
+      {
+        "ID": "V11",
+        "Evaluation component": "Pipeline-level comparison",
+        "Proposed test": "Compare scripts → LLM/expert with scripts → decision layer → LLM/expert using the same retrieved evidence and final review budget.",
+        "What to measure": "Relevant candidates retained; time to review; end-to-end errors and costs.",
+        "Failure to prevent": "An accurate local classifier can still harm the workflow by filtering out useful candidates.",
+        "Scope": "All domains",
+        "Status": "Proposed — not run"
+      },
+      {
+        "ID": "V12",
+        "Evaluation component": "Candidate-loss audit",
+        "Proposed test": "Sample retained, lowered-priority, bypassed and abstained cases; deliberately inspect rare/poorly annotated candidates.",
+        "What to measure": "False-negative candidate rate; rare-class recall; under-annotation bias.",
+        "Failure to prevent": "Preserve a contradiction and discovery queue. No blanket exclusion for insufficient evidence.",
+        "Scope": "Discovery/prioritization",
+        "Status": "Proposed — not run"
+      },
+      {
+        "ID": "V13",
+        "Evaluation component": "Image and spectrum dependency audit",
+        "Proposed test": "Evaluate descriptor generation and semantic decision separately, then together against image/spectrum-grounded expert labels.",
+        "What to measure": "Upstream-versus-decision error attribution; rare-lesion or isomer loss.",
+        "Failure to prevent": "Never claim direct Jev/Laya image/spectral understanding from results on prepared text.",
+        "Scope": "SC / ML / FC / HI",
+        "Status": "Proposed — not run"
+      },
+      {
+        "ID": "V14",
+        "Evaluation component": "Cost accounting",
+        "Proposed test": "Measure preprocessing, retrieval, extraction, decision calls, downstream LLM calls, review and cache reuse under the actual workload.",
+        "What to measure": "Total cost per retained useful candidate; amortized extraction cost; latency percentiles.",
+        "Failure to prevent": "Scripts and self-hosted models have compute/storage/maintenance costs; there is no zero-cost assumption.",
+        "Scope": "All domains",
+        "Status": "Proposed — not run"
+      },
+      {
+        "ID": "V15",
+        "Evaluation component": "Scientific validation beyond text labels",
+        "Proposed test": "Validate the biological target: held-out protein-panel performance, perturbation, analytical identity, gate membership or pathology interpretation.",
+        "What to measure": "Task-specific experimental/clinical research endpoint.",
+        "Failure to prevent": "Semantic-label agreement alone is not a discovery, biomarker validation or clinical validation.",
+        "Scope": "All domains",
+        "Status": "Proposed — not run"
+      },
+      {
+        "ID": "V16",
+        "Evaluation component": "Governance and deployment",
+        "Proposed test": "Version sources, definitions, checkpoints and rules; minimize personal data; obtain approvals appropriate to data and intended use.",
+        "What to measure": "Traceability; access controls; audit completeness; dataset/model drift.",
+        "Failure to prevent": "Use research routing only until the applicable clinical and institutional validation requirements are met.",
+        "Scope": "All domains",
+        "Status": "Proposed — not run"
+      }
+    ]
+  },
+  "Sources": {
+    "header_row": 5,
+    "rows": [
+      {
+        "ID": "S01",
+        "Source": "TypeSafe — Introduction",
+        "Source type": "Official documentation",
+        "URL": "https://docs.typesafe.ai/introduction",
+        "What this source supports": "Typed questions over a shared state; separate atomic decisions and combine them in code.",
+        "Limitation / use in this workbook": "Describes the interface/design pattern, not biomedical validation.",
+        "Accessed": "2026-09-28 00:00:00"
+      },
+      {
+        "ID": "S02",
+        "Source": "TypeSafe — Choice",
+        "Source type": "Official documentation",
+        "URL": "https://docs.typesafe.ai/primitives/choice",
+        "What this source supports": "Choice questions, criteria and structured choice outputs.",
+        "Limitation / use in this workbook": "Check the current API schema when implementing an adapter.",
+        "Accessed": "2026-09-28 00:00:00"
+      },
+      {
+        "ID": "S03",
+        "Source": "TypeSafe — Confidence",
+        "Source type": "Official documentation",
+        "URL": "https://docs.typesafe.ai/confidence",
+        "What this source supports": "Provider-defined confidence and decision routing.",
+        "Limitation / use in this workbook": "Provider confidence is not automatically a calibrated probability of biomedical correctness.",
+        "Accessed": "2026-09-28 00:00:00"
+      },
+      {
+        "ID": "S04",
+        "Source": "Laya — model card",
+        "Source type": "Developer model card",
+        "URL": "https://huggingface.co/convaiinnovations/laya",
+        "What this source supports": "Text/JSON state, typed decisions, checkpoint/token-budget differences; warns about zero-shot performance and calibration.",
+        "Limitation / use in this workbook": "Developer-reported benchmarks are not validation of these biomedical questions. Pin checkpoint and runtime versions.",
+        "Accessed": "2026-09-28 00:00:00"
+      },
+      {
+        "ID": "S05",
+        "Source": "DESeq2",
+        "Source type": "Official Bioconductor documentation",
+        "URL": "https://bioconductor.org/packages/release/bioc/html/DESeq2.html",
+        "What this source supports": "Count-based differential-expression analysis as an upstream statistical task.",
+        "Limitation / use in this workbook": "Differential expression alone does not establish causality, protein abundance or biomarker performance.",
+        "Accessed": "2026-09-28 00:00:00"
+      },
+      {
+        "ID": "S06",
+        "Source": "Reactome — Content Service",
+        "Source type": "Official database documentation",
+        "URL": "https://reactome.org/dev/content-service",
+        "What this source supports": "Programmatic retrieval of pathway records and biological annotations.",
+        "Limitation / use in this workbook": "Annotations are evidence inputs; absence of an annotation is not evidence of irrelevance.",
+        "Accessed": "2026-09-28 00:00:00"
+      },
+      {
+        "ID": "S07",
+        "Source": "Ensembl VEP — release 116 archive",
+        "Source type": "Official documentation",
+        "URL": "https://jun2026.archive.ensembl.org/info/docs/tools/vep/index.html",
+        "What this source supports": "Variant consequences, reference annotations and population frequencies can be computed/retrieved upstream.",
+        "Limitation / use in this workbook": "Predicted molecular consequence is not equivalent to disease causation.",
+        "Accessed": "2026-09-28 00:00:00"
+      },
+      {
+        "ID": "S08",
+        "Source": "ClinGen — Variant Classification Guidance",
+        "Source type": "Official guidance portal",
+        "URL": "https://clinicalgenome.org/tools/clingen-variant-classification-guidance/",
+        "What this source supports": "Current portal for aggregated, mechanism- and evidence-specific variant-classification recommendations.",
+        "Limitation / use in this workbook": "Research triage does not replace professional variant classification or the applicable evidence framework.",
+        "Accessed": "2026-09-28 00:00:00"
+      },
+      {
+        "ID": "S09",
+        "Source": "CellTypist documentation",
+        "Source type": "Official software documentation",
+        "URL": "https://celltypist.readthedocs.io/en/latest/",
+        "What this source supports": "Automated cell-type annotation and prediction outputs as upstream inputs.",
+        "Limitation / use in this workbook": "Do not replace a trained classifier with marker-name intuition; assess discordant cases.",
+        "Accessed": "2026-09-28 00:00:00"
+      },
+      {
+        "ID": "S10",
+        "Source": "ENCODE SCREEN",
+        "Source type": "Official resource",
+        "URL": "https://screen.encodeproject.org/",
+        "What this source supports": "Registry of candidate cis-regulatory elements derived from ENCODE data.",
+        "Limitation / use in this workbook": "Candidate-element annotation alone does not prove a target gene or regulatory mechanism.",
+        "Accessed": "2026-09-28 00:00:00"
+      },
+      {
+        "ID": "S11",
+        "Source": "SIRIUS documentation",
+        "Source type": "Official software documentation",
+        "URL": "https://v6.docs.sirius-ms.io/",
+        "What this source supports": "Specialist mass-spectrometry tools produce molecular-formula, structure-candidate and chemical-class annotations.",
+        "Limitation / use in this workbook": "Contextual plausibility must not override analytical evidence or identify unresolved isomers.",
+        "Accessed": "2026-09-28 00:00:00"
+      },
+      {
+        "ID": "S12",
+        "Source": "HUMAnN — laboratory documentation",
+        "Source type": "Official software documentation",
+        "URL": "https://huttenhower.sph.harvard.edu/humann/",
+        "What this source supports": "Profiling microbial molecular functions and metabolic pathways from sequencing data.",
+        "Limitation / use in this workbook": "Functional potential and measured metabolite production are different evidence types.",
+        "Accessed": "2026-09-28 00:00:00"
+      },
+      {
+        "ID": "S13",
+        "Source": "Harkema et al. — ConText (2009)",
+        "Source type": "Primary research article",
+        "URL": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2757457/",
+        "What this source supports": "Rule-based negation, experiencer and temporality extraction; baseline for short clinical-text processing.",
+        "Limitation / use in this workbook": "Use semantic triage only for unresolved contextual cases, not as a replacement for simple reliable rules.",
+        "Accessed": "2026-09-28 00:00:00"
+      },
+      {
+        "ID": "S14",
+        "Source": "openCyto vignette",
+        "Source type": "Official Bioconductor documentation",
+        "URL": "https://bioconductor.org/packages/release/bioc/vignettes/openCyto/inst/doc/openCytoVignette.html",
+        "What this source supports": "Template-based, data-driven flow-cytometry gating.",
+        "Limitation / use in this workbook": "Gate geometry, compensation and numerical quality checks remain upstream.",
+        "Accessed": "2026-09-28 00:00:00"
+      },
+      {
+        "ID": "S15",
+        "Source": "QuPath — About",
+        "Source type": "Official software documentation",
+        "URL": "https://qupath.readthedocs.io/en/stable/docs/intro/about.html",
+        "What this source supports": "Digital-pathology image analysis provides regions, objects and measurements.",
+        "Limitation / use in this workbook": "The proposed decision layer consumes descriptors; direct slide-image input is not assumed.",
+        "Accessed": "2026-09-28 00:00:00"
+      },
+      {
+        "ID": "S16",
+        "Source": "PMC — Open Access Web Service",
+        "Source type": "Official API documentation",
+        "URL": "https://pmc.ncbi.nlm.nih.gov/tools/oa-service/",
+        "What this source supports": "Programmatic discovery of reusable open-access article resources.",
+        "Limitation / use in this workbook": "Availability and permitted reuse depend on the article/license. Retrieval coverage must be recorded.",
+        "Accessed": "2026-09-28 00:00:00"
+      },
+      {
+        "ID": "S17",
+        "Source": "Uhlen et al. — A proposal for validation of antibodies (2016)",
+        "Source type": "Original expert-group proposal",
+        "URL": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10335836/",
+        "What this source supports": "Antibody validation is application- and context-specific; identity and experimental validation should be documented.",
+        "Limitation / use in this workbook": "Supports examining validation scope, not ranking a particular antibody or validating a Jev/Laya task.",
+        "Accessed": "2026-09-28 00:00:00"
+      },
+      {
+        "ID": "S18",
+        "Source": "MSstats",
+        "Source type": "Official Bioconductor documentation",
+        "URL": "https://bioconductor.org/packages/release/bioc/html/MSstats.html",
+        "What this source supports": "Statistical analysis of mass-spectrometry-based protein quantification as an upstream task.",
+        "Limitation / use in this workbook": "Quantification and statistical testing remain in specialist software, not the semantic decision model.",
+        "Accessed": "2026-09-28 00:00:00"
+      }
+    ]
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "synthetic": false,
+  "evidence_id": null,
+  "source_id": null,
+  "source_location": null,
+  "source_version": null,
+  "source_url": null,
+  "document_id": null,
+  "study_id": null,
+  "experiment_id": null,
+  "excerpt": null,
+  "observation_type": "unknown",
+  "extraction_method": null,
+  "extractor_version": null,
+  "extraction_history": [],
+  "computed_results": [],
+  "retrieval_coverage": {
+    "scope": null,
+    "full_text_access": null,
+    "query_version": null,
+    "as_of": null
+  },
+  "missingness": "unknown",
+  "review_status": "unreviewed"
+}

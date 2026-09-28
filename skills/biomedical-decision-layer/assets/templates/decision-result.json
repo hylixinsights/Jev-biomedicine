@@ -1,0 +1,22 @@
+{
+  "execution_status": "not_run",
+  "question_id": null,
+  "question_version": "1.0.0",
+  "candidate_id": null,
+  "context_version": "1.0.0",
+  "context_hash": null,
+  "answer_option_id": null,
+  "probabilities": null,
+  "provider_confidence": null,
+  "calibrated_reliability": null,
+  "calibration_id": null,
+  "model_id": null,
+  "model_revision": null,
+  "runtime_version": null,
+  "executed_at": null,
+  "raw_response_location": null,
+  "context_evidence_ids": [],
+  "routing_action": null,
+  "routing_rule_version": null,
+  "error": null
+}

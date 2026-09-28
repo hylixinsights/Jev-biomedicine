@@ -1,0 +1,119 @@
+{
+  "EC01": {
+    "question_id": "EC01",
+    "question_version": "1.0.0",
+    "question": "Does the passage place this condition before the current episode or describe new onset during it?",
+    "options": [
+      {
+        "option_id": "1",
+        "label": "Pre-existing condition",
+        "definition": "The passage explicitly places the condition before the index episode.",
+        "definition_status": "editorial proposal; expert review pending"
+      },
+      {
+        "option_id": "2",
+        "label": "New onset during current episode",
+        "definition": "The passage explicitly places first onset during the index episode.",
+        "definition_status": "editorial proposal; expert review pending"
+      },
+      {
+        "option_id": "3",
+        "label": "Pre-existing condition with current worsening",
+        "definition": "A pre-existing condition is explicitly described as worsening during the episode.",
+        "definition_status": "editorial proposal; expert review pending"
+      },
+      {
+        "option_id": "4",
+        "label": "Timing remains unresolved",
+        "definition": "The available narrative leaves temporal ordering unresolved.",
+        "definition_status": "editorial proposal; expert review pending"
+      },
+      {
+        "option_id": "5",
+        "label": "Insufficient evidence",
+        "definition": "Decisive facts, identity, source coverage or usable context are missing. Do not interpret this as a negative finding.",
+        "definition_status": "editorial proposal; expert review pending"
+      }
+    ]
+  },
+  "EC04": {
+    "question_id": "EC04",
+    "question_version": "1.0.0",
+    "question": "Whose condition or exposure is described by this passage?",
+    "options": [
+      {
+        "option_id": "1",
+        "label": "Index participant",
+        "definition": "The mention refers to the index participant.",
+        "definition_status": "editorial proposal; expert review pending"
+      },
+      {
+        "option_id": "2",
+        "label": "Another person",
+        "definition": "The mention refers to another identifiable role in the record.",
+        "definition_status": "editorial proposal; expert review pending"
+      },
+      {
+        "option_id": "3",
+        "label": "Both index participant and another person",
+        "definition": "The condition or exposure is explicitly attributed to both.",
+        "definition_status": "editorial proposal; expert review pending"
+      },
+      {
+        "option_id": "4",
+        "label": "Generic or hypothetical person",
+        "definition": "The mention concerns a generic or hypothetical person.",
+        "definition_status": "editorial proposal; expert review pending"
+      },
+      {
+        "option_id": "5",
+        "label": "Insufficient evidence",
+        "definition": "Decisive facts, identity, source coverage or usable context are missing. Do not interpret this as a negative finding.",
+        "definition_status": "editorial proposal; expert review pending"
+      }
+    ]
+  },
+  "EC05": {
+    "question_id": "EC05",
+    "question_version": "1.0.0",
+    "question": "What status does the passage explicitly assign to the condition at the relevant time?",
+    "options": [
+      {
+        "option_id": "1",
+        "label": "Documented as confirmed",
+        "definition": "The record explicitly documents confirmation at the specified time.",
+        "definition_status": "editorial proposal; expert review pending"
+      },
+      {
+        "option_id": "2",
+        "label": "Suspected or under investigation",
+        "definition": "The condition remains suspected or under investigation at that time.",
+        "definition_status": "editorial proposal; expert review pending"
+      },
+      {
+        "option_id": "3",
+        "label": "Explicitly ruled out",
+        "definition": "The condition is explicitly ruled out at that time.",
+        "definition_status": "editorial proposal; expert review pending"
+      },
+      {
+        "option_id": "4",
+        "label": "Historical diagnosis only",
+        "definition": "Only a historical diagnosis is documented, without current confirmation.",
+        "definition_status": "editorial proposal; expert review pending"
+      },
+      {
+        "option_id": "5",
+        "label": "Conflicting statements",
+        "definition": "Statements at the relevant time conflict without a resolved sequence.",
+        "definition_status": "editorial proposal; expert review pending"
+      },
+      {
+        "option_id": "6",
+        "label": "Insufficient evidence",
+        "definition": "Decisive facts, identity, source coverage or usable context are missing. Do not interpret this as a negative finding.",
+        "definition_status": "editorial proposal; expert review pending"
+      }
+    ]
+  }
+}

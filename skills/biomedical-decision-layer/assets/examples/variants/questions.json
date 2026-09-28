@@ -1,0 +1,113 @@
+{
+  "GV01": {
+    "question_id": "GV01",
+    "question_version": "1.0.0",
+    "question": "Is the variant's proposed molecular effect compatible with the mechanism described for this gene–disease relationship?",
+    "options": [
+      {
+        "option_id": "1",
+        "label": "Compatible mechanism",
+        "definition": "The proposed molecular effect agrees with the supplied gene–disease mechanism.",
+        "definition_status": "editorial proposal; expert review pending"
+      },
+      {
+        "option_id": "2",
+        "label": "Opposing mechanism",
+        "definition": "The proposed effect runs opposite to the supplied disease mechanism.",
+        "definition_status": "editorial proposal; expert review pending"
+      },
+      {
+        "option_id": "3",
+        "label": "Mechanism-dependent or mixed",
+        "definition": "Compatibility varies by mechanism, transcript or disease context.",
+        "definition_status": "editorial proposal; expert review pending"
+      },
+      {
+        "option_id": "4",
+        "label": "Disease mechanism unresolved",
+        "definition": "The supplied disease record explicitly leaves the mechanism unresolved.",
+        "definition_status": "editorial proposal; expert review pending"
+      },
+      {
+        "option_id": "5",
+        "label": "Insufficient evidence",
+        "definition": "Decisive facts, identity, source coverage or usable context are missing. Do not interpret this as a negative finding.",
+        "definition_status": "editorial proposal; expert review pending"
+      }
+    ]
+  },
+  "GV03": {
+    "question_id": "GV03",
+    "question_version": "1.0.0",
+    "question": "Does the functional experiment test the mechanism relevant to this variant–disease relationship?",
+    "options": [
+      {
+        "option_id": "1",
+        "label": "Relevant mechanism tested",
+        "definition": "The assay directly tests the disease-relevant mechanism for the specified allele.",
+        "definition_status": "editorial proposal; expert review pending"
+      },
+      {
+        "option_id": "2",
+        "label": "Generic functional disruption only",
+        "definition": "The assay shows disruption without testing the disease-specific mechanism.",
+        "definition_status": "editorial proposal; expert review pending"
+      },
+      {
+        "option_id": "3",
+        "label": "Different mechanism tested",
+        "definition": "The assay tests a mechanism different from the proposed disease mechanism.",
+        "definition_status": "editorial proposal; expert review pending"
+      },
+      {
+        "option_id": "4",
+        "label": "Mechanism not tested",
+        "definition": "No functional test of a mechanism is described.",
+        "definition_status": "editorial proposal; expert review pending"
+      },
+      {
+        "option_id": "5",
+        "label": "Insufficient evidence",
+        "definition": "Decisive facts, identity, source coverage or usable context are missing. Do not interpret this as a negative finding.",
+        "definition_status": "editorial proposal; expert review pending"
+      }
+    ]
+  },
+  "GV04": {
+    "question_id": "GV04",
+    "question_version": "1.0.0",
+    "question": "Does the assay system represent the transcript or isoform implicated by the proposed variant mechanism?",
+    "options": [
+      {
+        "option_id": "1",
+        "label": "Relevant endogenous transcript",
+        "definition": "The assay represents the relevant endogenous transcript or isoform.",
+        "definition_status": "editorial proposal; expert review pending"
+      },
+      {
+        "option_id": "2",
+        "label": "Relevant sequence in an artificial construct",
+        "definition": "The relevant sequence is present in an artificial assay construct.",
+        "definition_status": "editorial proposal; expert review pending"
+      },
+      {
+        "option_id": "3",
+        "label": "Different transcript or isoform",
+        "definition": "The tested transcript or isoform differs from the proposed target.",
+        "definition_status": "editorial proposal; expert review pending"
+      },
+      {
+        "option_id": "4",
+        "label": "Transcript representation unresolved",
+        "definition": "Available assay documentation explicitly leaves transcript representation unresolved.",
+        "definition_status": "editorial proposal; expert review pending"
+      },
+      {
+        "option_id": "5",
+        "label": "Insufficient evidence",
+        "definition": "Decisive facts, identity, source coverage or usable context are missing. Do not interpret this as a negative finding.",
+        "definition_status": "editorial proposal; expert review pending"
+      }
+    ]
+  }
+}

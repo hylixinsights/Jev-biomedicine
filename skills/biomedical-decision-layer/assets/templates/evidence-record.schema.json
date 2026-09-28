@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "title": "evidence-record repository envelope 1.0.0",
+  "required": [
+    "synthetic",
+    "evidence_id",
+    "source_id",
+    "source_location",
+    "source_version",
+    "source_url",
+    "document_id",
+    "study_id",
+    "experiment_id",
+    "excerpt",
+    "observation_type",
+    "extraction_method",
+    "extractor_version",
+    "extraction_history",
+    "computed_results",
+    "retrieval_coverage",
+    "missingness",
+    "review_status"
+  ],
+  "properties": {
+    "synthetic": {
+      "type": "boolean"
+    },
+    "evidence_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "source_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "source_location": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "source_version": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "source_url": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "document_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "study_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "experiment_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "excerpt": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "observation_type": {
+      "type": "string"
+    },
+    "extraction_method": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "extractor_version": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "extraction_history": {
+      "type": "array"
+    },
+    "computed_results": {
+      "type": "array"
+    },
+    "retrieval_coverage": {
+      "type": "object"
+    },
+    "missingness": {
+      "type": "string"
+    },
+    "review_status": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": true
+}

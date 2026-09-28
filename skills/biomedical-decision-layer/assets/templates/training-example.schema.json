@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "title": "training-example repository envelope 1.0.0",
+  "required": [
+    "synthetic",
+    "example_id",
+    "catalogue_version",
+    "question_id",
+    "question_version",
+    "context_version",
+    "context",
+    "task_definition",
+    "options",
+    "source_ids",
+    "dependence_groups",
+    "split",
+    "split_policy_version",
+    "labels"
+  ],
+  "properties": {
+    "synthetic": {
+      "type": "boolean"
+    },
+    "example_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "catalogue_version": {
+      "type": "string"
+    },
+    "question_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "question_version": {
+      "type": "string"
+    },
+    "context_version": {
+      "type": "string"
+    },
+    "context": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "task_definition": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "options": {
+      "type": "array"
+    },
+    "source_ids": {
+      "type": "array"
+    },
+    "dependence_groups": {
+      "type": "object"
+    },
+    "split": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "split_policy_version": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "labels": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": true
+}

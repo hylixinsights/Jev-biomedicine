@@ -1,0 +1,5 @@
+source_file,source_location,question_id,destination_fields,supplier,reuse_key
+source-dossier.md,Annotation table,GV01,variant_id; transcript_version; proposed_effect; effect_evidence_type,existing annotation tool output,V_SYN_1-T_SYN.1-v1
+source-dossier.md,E1 — Disease mechanism record X1,GV01,disease; mechanism_excerpt,source extraction with expert check,G_SYN-D_SYN-X1-v1
+source-dossier.md,E1; E2 — Functional experiment X2,GV03,disease_mechanism; tested_allele; construct; readout_definition; controls; results_excerpt,assay-source extraction,X2-V_SYN_1-v1
+source-dossier.md,Annotation table; E2,GV04,target_transcript; exon_context; construct_mapping; assay_system; endogenous_expression; methods_excerpt,transcript mapping plus source extraction,T_SYN.1-X2-v1

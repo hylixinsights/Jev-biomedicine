@@ -1,0 +1,15 @@
+schema_version: "1.0.0"
+preparation_only: true
+scientific_question: null
+condition: null
+biological_material: null
+comparison: null
+intended_time: null
+decision_unit: null
+desired_output: null
+available_files: []
+already_computed_results: []
+authorized_evidence_sources: []
+missing_information: []
+selected_question_ids: []
+external_data_transfer_authorized: false

@@ -1,0 +1,113 @@
+{
+  "BM01": {
+    "question_id": "BM01",
+    "question_version": "1.0.0",
+    "question": "Does the candidate add a disease-relevant biological process not already represented by the panel?",
+    "options": [
+      {
+        "option_id": "1",
+        "label": "Complementary process",
+        "definition": "Adds a supported process relevant to the intended use and absent from the fixed panel roles.",
+        "definition_status": "editorial proposal; expert review pending"
+      },
+      {
+        "option_id": "2",
+        "label": "Same underlying process",
+        "definition": "Represents a process already captured by the fixed panel.",
+        "definition_status": "editorial proposal; expert review pending"
+      },
+      {
+        "option_id": "3",
+        "label": "Process outside the intended use",
+        "definition": "Supported role falls outside the specified biological use.",
+        "definition_status": "editorial proposal; expert review pending"
+      },
+      {
+        "option_id": "4",
+        "label": "Mixed or context-dependent roles",
+        "definition": "Relevant roles differ across contexts or include both represented and additional processes.",
+        "definition_status": "editorial proposal; expert review pending"
+      },
+      {
+        "option_id": "5",
+        "label": "Insufficient evidence",
+        "definition": "Decisive facts, identity, source coverage or usable context are missing. Do not interpret this as a negative finding.",
+        "definition_status": "editorial proposal; expert review pending"
+      }
+    ]
+  },
+  "BM02": {
+    "question_id": "BM02",
+    "question_version": "1.0.0",
+    "question": "Does the cited assay-validation experiment support use in the proposed specimen matrix?",
+    "options": [
+      {
+        "option_id": "1",
+        "label": "Direct matrix evidence",
+        "definition": "Validation directly tests the proposed specimen matrix.",
+        "definition_status": "editorial proposal; expert review pending"
+      },
+      {
+        "option_id": "2",
+        "label": "Related matrix requiring validation",
+        "definition": "Evidence tests a related matrix whose transfer still requires validation.",
+        "definition_status": "editorial proposal; expert review pending"
+      },
+      {
+        "option_id": "3",
+        "label": "Different matrix only",
+        "definition": "Available validation tests only a different matrix.",
+        "definition_status": "editorial proposal; expert review pending"
+      },
+      {
+        "option_id": "4",
+        "label": "Conflicting matrix evidence",
+        "definition": "Comparable matrix-validation records give incompatible findings.",
+        "definition_status": "editorial proposal; expert review pending"
+      },
+      {
+        "option_id": "5",
+        "label": "Insufficient evidence",
+        "definition": "Decisive facts, identity, source coverage or usable context are missing. Do not interpret this as a negative finding.",
+        "definition_status": "editorial proposal; expert review pending"
+      }
+    ]
+  },
+  "BM03": {
+    "question_id": "BM03",
+    "question_version": "1.0.0",
+    "question": "Does the study comparison address the intended clinical distinction?",
+    "options": [
+      {
+        "option_id": "1",
+        "label": "Same clinical distinction",
+        "definition": "Case, comparator and decision time match the intended distinction.",
+        "definition_status": "editorial proposal; expert review pending"
+      },
+      {
+        "option_id": "2",
+        "label": "Healthy controls only",
+        "definition": "Cases are compared only with healthy controls, without establishing the intended alternative condition.",
+        "definition_status": "editorial proposal; expert review pending"
+      },
+      {
+        "option_id": "3",
+        "label": "Different clinical distinction",
+        "definition": "The study contrasts different clinical states from the intended use.",
+        "definition_status": "editorial proposal; expert review pending"
+      },
+      {
+        "option_id": "4",
+        "label": "Mixed comparison with unresolved subgroups",
+        "definition": "Pooled comparisons do not resolve the required subgroups.",
+        "definition_status": "editorial proposal; expert review pending"
+      },
+      {
+        "option_id": "5",
+        "label": "Insufficient evidence",
+        "definition": "Decisive facts, identity, source coverage or usable context are missing. Do not interpret this as a negative finding.",
+        "definition_status": "editorial proposal; expert review pending"
+      }
+    ]
+  }
+}

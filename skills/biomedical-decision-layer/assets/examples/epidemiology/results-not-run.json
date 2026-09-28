@@ -1,0 +1,123 @@
+[
+  {
+    "execution_status": "not_run",
+    "question_id": "EC01",
+    "question_version": "1.0.0",
+    "candidate_id": "renal-X1",
+    "context_version": "1.0.0",
+    "context_hash": null,
+    "answer_option_id": null,
+    "probabilities": null,
+    "provider_confidence": null,
+    "calibrated_reliability": null,
+    "calibration_id": null,
+    "model_id": null,
+    "model_revision": null,
+    "runtime_version": null,
+    "executed_at": null,
+    "raw_response_location": null,
+    "context_evidence_ids": [
+      "EC-E1"
+    ],
+    "routing_action": null,
+    "routing_rule_version": null,
+    "error": null
+  },
+  {
+    "execution_status": "not_run",
+    "question_id": "EC04",
+    "question_version": "1.0.0",
+    "candidate_id": "diabetes-X1",
+    "context_version": "1.0.0",
+    "context_hash": null,
+    "answer_option_id": null,
+    "probabilities": null,
+    "provider_confidence": null,
+    "calibrated_reliability": null,
+    "calibration_id": null,
+    "model_id": null,
+    "model_revision": null,
+    "runtime_version": null,
+    "executed_at": null,
+    "raw_response_location": null,
+    "context_evidence_ids": [
+      "EC-E2"
+    ],
+    "routing_action": null,
+    "routing_rule_version": null,
+    "error": null
+  },
+  {
+    "execution_status": "not_run",
+    "question_id": "EC05",
+    "question_version": "1.0.0",
+    "candidate_id": "pneumonia-X1-discharge",
+    "context_version": "1.0.0",
+    "context_hash": null,
+    "answer_option_id": null,
+    "probabilities": null,
+    "provider_confidence": null,
+    "calibrated_reliability": null,
+    "calibration_id": null,
+    "model_id": null,
+    "model_revision": null,
+    "runtime_version": null,
+    "executed_at": null,
+    "raw_response_location": null,
+    "context_evidence_ids": [
+      "EC-E3"
+    ],
+    "routing_action": null,
+    "routing_rule_version": null,
+    "error": null
+  },
+  {
+    "execution_status": "not_run",
+    "question_id": "EC01",
+    "question_version": "1.0.0",
+    "candidate_id": "renal-X1",
+    "context_version": "1.0.0-missing",
+    "context_hash": null,
+    "answer_option_id": null,
+    "probabilities": null,
+    "provider_confidence": null,
+    "calibrated_reliability": null,
+    "calibration_id": null,
+    "model_id": null,
+    "model_revision": null,
+    "runtime_version": null,
+    "executed_at": null,
+    "raw_response_location": null,
+    "context_evidence_ids": [
+      "epidemiology-missing"
+    ],
+    "routing_action": null,
+    "routing_rule_version": null,
+    "error": null
+  },
+  {
+    "execution_status": "not_run",
+    "question_id": "EC05",
+    "question_version": "1.0.0",
+    "candidate_id": "pneumonia-X1-discharge",
+    "context_version": "1.0.0-conflict",
+    "context_hash": null,
+    "answer_option_id": null,
+    "probabilities": null,
+    "provider_confidence": null,
+    "calibrated_reliability": null,
+    "calibration_id": null,
+    "model_id": null,
+    "model_revision": null,
+    "runtime_version": null,
+    "executed_at": null,
+    "raw_response_location": null,
+    "context_evidence_ids": [
+      "EC-E3",
+      "epidemiology-conflict"
+    ],
+    "routing_action": null,
+    "routing_rule_version": null,
+    "error": null
+  }
+]

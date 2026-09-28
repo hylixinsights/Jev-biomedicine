@@ -1,0 +1,4 @@
+source_file,source_location,question_id,destination_fields,supplier,reuse_key
+source-dossier.md,E1; Rule summary,EC01,condition; original_passage; episode_start; surrounding_sentences; rule_results,original source plus existing rule outputs,X1-E1-v1
+source-dossier.md,E2; Rule summary,EC04,target_mention; passage; role_map; surrounding_sentences; rule_experiencer,original source plus existing rule outputs,X1-E2-v1
+source-dossier.md,E3; Rule summary,EC05,condition; relevant_time; ordered_passages; status_definitions; rule_results,time-aware source extraction and rule outputs,X1-respiratory-timeline-v1

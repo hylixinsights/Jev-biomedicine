@@ -1,0 +1,15 @@
+# Fine-tuning preparation
+
+Changing question wording or option descriptions is prompt adaptation. Fine-tuning updates model parameters and needs a separate implementation and evaluation. This repository only specifies data preparation.
+
+Use [training-example.json](../assets/templates/training-example.json) to record context, task definition, exact options, catalogue/question/context versions, reviewed answer, source identities and dependence groups. Preserve separate `human_label`, `llm_suggested_label` and `expert_reviewed_label` records with author, method, date and review status. A suggested LLM answer is not an independent reference label. Unreviewed synthetic examples are demonstrations, not gold-standard training data.
+
+Split by source dependence before creating excerpts or variants: study, patient, family, donor, document, slide, locus or experiment as appropriate. Connected records sharing these units stay together. All overlapping chunks, reused extracts and paraphrases from one document remain in one split. If study-level generalization matters, group all patients and experiments from that study. Separate training, model-selection validation, calibration and a final untouched test set. Record the split policy and freeze IDs.
+
+Include insufficient-evidence and conflicting-evidence cases, rare classes and out-of-domain examples. Report per-class support, recall and errors by question/domain, with special attention to missed useful candidates. Assess agreement between independent human annotators and adjudicate disagreement before treating labels as reference data. Review category overlaps in the [revision register](catalogue-revisions.md).
+
+Evaluate discrimination and calibration separately: macro-F1, class recall, Brier score, reliability plots and risk–coverage curves. Fit calibration only on designated development/calibration data. Choose task-specific routing thresholds from acceptable errors and review capacity, without tuning on the held-out test set. Report uncertainty and subgroup sample sizes. Calibration claims from an upstream benchmark do not establish biomedical reliability.
+
+The [Laya model card](https://huggingface.co/convaiinnovations/laya) links a fine-tuning notebook in [NandhaKishorM/laya](https://github.com/NandhaKishorM/laya), inspected repository HEAD `9d955671415fc19f069b9cc998928075c1f255ec`. Its published examples concern other decision workflows. A biomedical training recipe has **not** been verified or executed here. We therefore supply no training command or purportedly backend-ready dataset format.
+
+Before implementation, confirm the exact training entry point and revision, accepted dataset schema and objective, hardware and dependency requirements, checkpoint/tokenizer compatibility, supported label types, checkpoint export to the selected inference runtime, and calibration procedure. The [handoff template](../assets/templates/implementation-handoff.md) records these open items. Hosted Jev fine-tuning support remains unconfirmed.

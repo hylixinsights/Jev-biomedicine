@@ -1,0 +1,19 @@
+{
+  "synthetic": false,
+  "question_id": null,
+  "question_version": "1.0.0",
+  "candidate_id": null,
+  "context_version": "1.0.0",
+  "study_context": {},
+  "computed_results": [],
+  "evidence_items": [],
+  "context_fields": {},
+  "missing_fields": [],
+  "preparation_status": "draft",
+  "token_audit": {
+    "status": "unverified",
+    "tokenizer_revision": null,
+    "packed_token_count": null,
+    "truncation": null
+  }
+}
